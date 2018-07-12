@@ -26,8 +26,7 @@ public @Data class Estrategia {
 	private String mision;
 	private String vision;
 	
-	@OneToMany(mappedBy = "estrategia", cascade = CascadeType.ALL, 
-			fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Perspectiva> perspectivasAsociadas;
 	
 	
@@ -41,13 +40,11 @@ public @Data class Estrategia {
 		this.vision = vision;
 	}
 	
-	public void addPerspectiva(Perspectiva perspectiva) {
-		this.perspectivasAsociadas.add(perspectiva);
-		perspectiva.setEstrategia(this);
+	public void addPerspectiva(Perspectiva p) {
+		this.perspectivasAsociadas.add(p);
 	}
 	
-	public void removePerspectiva(Perspectiva perspectiva) {
-		this.perspectivasAsociadas.remove(perspectiva);
-		perspectiva.setEstrategia(null);
+	public void removePerspectiva(Perspectiva p) {
+		this.perspectivasAsociadas.remove(p);
 	}
 }
