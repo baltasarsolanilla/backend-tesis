@@ -27,13 +27,23 @@ public class BscApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		Estrategia e1 = new Estrategia("e1","m1","v1");
-		Estrategia e2 = new Estrategia("e2","m2","v2");
-		estrategiaRepository.save(e1);
-		estrategiaRepository.save(e2);
+		Perspectiva p1 = new Perspectiva("p1", "d1");
+		Perspectiva p2 = new Perspectiva("p2", "d2");
+		e1.addPerspectiva(p1);
+		e1.addPerspectiva(p2);
 		
-		Perspectiva p1 = new Perspectiva(e1,"p1", "d1");
-		Perspectiva p2 = new Perspectiva(e1,"p2", "d2");
-		perspectivaRepository.save(p1);
-		perspectivaRepository.save(p2);
+		//Cuando persisto el padre, se persisten los hijos.
+		//No funciona al revés.
+		estrategiaRepository.save(e1);
+		
+		Estrategia e2 = new Estrategia("e2","m2","v2");
+		Perspectiva p3 = new Perspectiva("p3", "d3");
+		Perspectiva p4 = new Perspectiva("p4", "d4");
+		e1.addPerspectiva(p3);
+		e1.addPerspectiva(p4);
+		
+		//Cuando persisto el padre, se persisten los hijos.
+		//No funciona al revés.
+		estrategiaRepository.save(e2);
 	}
 }
