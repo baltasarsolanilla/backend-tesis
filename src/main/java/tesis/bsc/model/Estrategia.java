@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -27,6 +28,7 @@ public @Data class Estrategia {
 	private String vision;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "estrategia_id")
 	private List<Perspectiva> perspectivasAsociadas;
 	
 	

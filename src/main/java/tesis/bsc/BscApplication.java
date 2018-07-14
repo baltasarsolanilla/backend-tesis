@@ -39,9 +39,9 @@ public class BscApplication implements CommandLineRunner{
 		Estrategia e2 = new Estrategia("e2","m2","v2");
 		Perspectiva p3 = new Perspectiva("p3", "d3");
 		Perspectiva p4 = new Perspectiva("p4", "d4");
-		e1.addPerspectiva(p3);
+//		e1.addPerspectiva(p3);
 		e1.addPerspectiva(p4);
-		
+		perspectivaRepository.save(p3);
 		//Cuando persisto el padre, se persisten los hijos.
 		//No funciona al revés.
 		estrategiaRepository.save(e2);

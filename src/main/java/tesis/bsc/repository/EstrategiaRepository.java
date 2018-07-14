@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import tesis.bsc.model.Estrategia;
 
-@RepositoryRestResource(collectionResourceRel = "estrategias", path="estrategias")
+
 public interface EstrategiaRepository extends JpaRepository<Estrategia, Integer> {
 	
 	List<Estrategia> findByNombre(@Param("nombre") String nombre);
