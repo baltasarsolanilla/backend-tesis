@@ -1,13 +1,22 @@
 package tesis.bsc.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import lombok.Data;
 
 @Entity
 public @Data class Perspectiva {
+	
+	private static final String PERSPECTIVA = "perspectiva";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -16,14 +25,29 @@ public @Data class Perspectiva {
 	private String nombre;
 	private String descripcion;
 	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "perspectiva_id")
+	private List<Objetivo> objetivosAfectantes;
+	
 	public Perspectiva() { //JPA only (for Reflection)
 		
 	}
 
 	public Perspectiva(String nombre, String descripcion) {
+		this.objetivosAfectantes = new ArrayList<>();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
+	
+	
+	public void addObjetivo(Objetivo o) {
+		this.objetivosAfectantes.add(o);
+	}
+	
+	public void removeObjetivo(Objetivo o) {
+		this.objetivosAfectantes.remove(o);
+	}
+	
 	
 	@Override
     public boolean equals(Object o) {
@@ -32,9 +56,18 @@ public @Data class Perspectiva {
         return this.id != null && this.id.equals(((Perspectiva) o).id);
     }
 	
+
     @Override
     public int hashCode() {
-        return 31;
+        return PERSPECTIVA.hashCode();
     }
+    
+	public Perspectiva clonePerspectiva() {
+		Perspectiva p_clone = new Perspectiva();
+		p_clone.setId(this.getId());
+		p_clone.setNombre(this.getNombre());
+		p_clone.setDescripcion(this.getDescripcion());
+		return p_clone;
+	}
 	
 }
