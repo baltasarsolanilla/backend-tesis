@@ -31,14 +31,14 @@ public class PerspectivaRestController {
 	 * PATH: /perspectivas
 	 */
 	
-	//Get all Perspectivas
+	//Get all Perspectivas -- TEST PURPOSE ONLY
 	@GetMapping
     public Collection<Perspectiva> findAllPerspectivas() {
-        return ((Collection<Perspectiva>) perspectivaRepository.findAll());
+        return (Collection<Perspectiva>) perspectivaRepository.findAll();
         
     }
 	
-	//Create Perspectiva
+	///Create Perspectiva -- TEST PURPOSE ONLY
 	@PostMapping
 	public Perspectiva addPerspectiva(@RequestBody Perspectiva perspectiva) {
 	    perspectivaRepository.save(perspectiva);
