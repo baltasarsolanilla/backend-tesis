@@ -53,7 +53,7 @@ public @Data class Perspectiva {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Perspectiva )) return false;
-        return this.id != null && this.id.equals(((Perspectiva) o).id);
+        return this.id != null && this.id.equals(((Perspectiva) o).getId());
     }
 	
 

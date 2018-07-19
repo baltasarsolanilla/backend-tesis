@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.model.Perspectiva;
 import tesis.bsc.repository.ObjetivoRepository;
 
 @RestController
@@ -66,5 +68,36 @@ public class ObjetivoRestController {
 		Objetivo objetivoEliminado = o.cloneObjetivo();
 		objetivoRepository.delete(o);
 		return objetivoEliminado;
-	} 
+	}
+	
+	/*
+	 * PATH: /objetivos/{idObjetivo}/indicadoresAfectantes
+	 */
+	
+	//Get all indicadoresAfectantes
+	@GetMapping("{idObjetivo}/indicadoresAfectantes")
+	public Collection<IndicadorXObjetivo> getIndicadoresAfectantes(@PathVariable("idObjetivo") int id){
+		Objetivo objetivo = objetivoRepository.findById(id).orElse(null);
+		return objetivo.getIndicadoresAfectantes();
+	}
+
+//		
+//		//Add Objetivo to objetivosAfectantes by ID
+//		@PostMapping(path = "/{idPerspectiva}/objetivosAfectantes")
+//		public Collection<Objetivo> addObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
+//			Perspectiva perspectiva = perspectivaRepository.findById(id).orElse(null);
+//			perspectiva.addObjetivo(objetivo);
+//			perspectivaRepository.save(perspectiva);
+//			return perspectiva.getObjetivosAfectantes();
+//		}
+//		
+//		//Delete Objetivo from objetivosAfectantes by ID
+//		@DeleteMapping(path = "/{idPerspectiva}/objetivosAfectantes")
+//		public Collection<Objetivo> deleteObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
+//			Perspectiva perspectiva = perspectivaRepository.findById(id).orElse(null);
+//			Objetivo objetivoAfectante = objetivoRepository.findById(objetivo.getId()).orElse(null);
+//			perspectiva.removeObjetivo(objetivoAfectante);
+//			perspectivaRepository.save(perspectiva);
+//			return perspectiva.getObjetivosAfectantes();
+//		}
 }
