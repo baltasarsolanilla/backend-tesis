@@ -3,6 +3,7 @@ package tesis.bsc;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +19,7 @@ import tesis.bsc.repository.EstrategiaRepository;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.repository.ObjetivoRepository;
 import tesis.bsc.repository.PerspectivaRepository;
+import tesis.bsc.service.ObjetivoService;
 
 @SpringBootApplication
 public class BscApplication implements CommandLineRunner{
@@ -28,8 +30,11 @@ public class BscApplication implements CommandLineRunner{
 	@Autowired
 	PerspectivaRepository perspectivaRepository;
 	
+//	@Autowired
+//	ObjetivoRepository objetivoRepository;
+	
 	@Autowired
-	ObjetivoRepository objetivoRepository;
+	ObjetivoService objetivoService;
 	
 	@Autowired
 	IndicadorRepository indicadorRepository;
@@ -75,9 +80,9 @@ public class BscApplication implements CommandLineRunner{
 //		p3.addObjetivo(o3);
 //		p4.addObjetivo(o4);
 //
-//		estrategiaRepository.save(e2);
-//		perspectivaRepository.save(p3);
-//		perspectivaRepository.save(p4);
+//		e2 = estrategiaRepository.save(e2);
+//		p3 = perspectivaRepository.save(p3);
+//		p4 = perspectivaRepository.save(p4);
 //		
 //		Estrategia e3 = new Estrategia("e3","m3","v3");
 //		Perspectiva p5 = new Perspectiva("p5", "d5");
@@ -89,43 +94,57 @@ public class BscApplication implements CommandLineRunner{
 //		p5.addObjetivo(o5);
 //		p6.addObjetivo(o6);
 //
-//		estrategiaRepository.save(e3);
-//		perspectivaRepository.save(p5);
-//		perspectivaRepository.save(p6);
-		
-		//TEST 2.0
-		/*
-		 * Creo 2 objetivos
-		 * Creo 2 perspectivas
-		 * Creo 3 relaciones IndicadorXObjetivo
-		 * El objetivo o20 tiene 2 relaciones, con i20 y i21.
-		 * El objetivo o21 tiene 1 relacion, con i20.
-		 */
-		
-		Objetivo o20 = new Objetivo("o20", "d20");
-		o20 = objetivoRepository.save(o20);
-		
-		Objetivo o21 = new Objetivo("o21", "d21");
-		o21 = objetivoRepository.save(o21);
-		
-		Indicador i20 = new Indicador("i20", 80.0F);
-		i20 = indicadorRepository.save(i20);
-		o20.addIndicador(i20, 25.6F);
-		o21.addIndicador(i20, 2.6F);
-		
-		o20 = objetivoRepository.save(o20);
-		o21 = objetivoRepository.save(o21);
-		
-		Indicador i21 = new Indicador("i21", 33.0F);
-		i21 = indicadorRepository.save(i21);
-		o20.addIndicador(i21, 12.6F);
-		o21.addIndicador(i21, 9.6F);
-		o20 = objetivoRepository.save(o20);
-		o21 = objetivoRepository.save(o21);
+//		e3 = estrategiaRepository.save(e3);
+//		p5 = perspectivaRepository.save(p5);
+//		p6 = perspectivaRepository.save(p6);
+//		
+//		
+//		
+//		
+//		/*
+//		 * Creo 2 objetivos
+//		 * Creo 2 indicadores
+//		 * El objetivo o20 tiene 2 relaciones, con i20 y i21.
+//		 * El objetivo o21 tiene 2 relacion, con i20 y i21.
+//		 */
+//		
+//		o1 = objetivoRepository.findById(1).orElse(null);
+//		o2 = objetivoRepository.findById(2).orElse(null);
+//		
+//		
+//		Indicador i20 = new Indicador("i20", 80.0F);
+//		i20 = indicadorRepository.save(i20);
+//		
+//		Hibernate.initialize(o1.getIndicadoresAfectantes());
+//		o1.addIndicador(i20, 25.6F);
+//		o2.addIndicador(i20, 2.6F);
+//		
+//		o1 = objetivoRepository.save(o1);
+//		o2 = objetivoRepository.save(o2);
+//		
+//		Indicador i21 = new Indicador("i21", 33.0F);
+//		i21 = indicadorRepository.save(i21);
+//		o1.addIndicador(i21, 12.6F);
+//		o2.addIndicador(i21, 9.6F);
+//		o1 = objetivoRepository.save(o1);
+//		o2 = objetivoRepository.save(o2);
 		
 //		i20 = indicadorRepository.findById(1).orElse(null);
 //		o20.removeIndicador(i20);
 //		objetivoRepository.save(o20);
 			
+		
+		//TESTING LAZY
+		
+//		ObjetivoService objetivoService = new ObjetivoService();
+		
+		Objetivo o1 = new Objetivo("o1", "d1");
+		objetivoService.save(o1);
+		
+		Indicador i1 = new Indicador("i1", 1.0F);
+		indicadorRepository.save(i1);
+		
+		
+		objetivoService.addIndicador(1, i1);
 	}
 }
