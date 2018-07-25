@@ -10,6 +10,7 @@ import javax.persistence.MapsId;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -22,13 +23,13 @@ public @Data class IndicadorXObjetivo implements Serializable{
 	@EmbeddedId
 	private IndicadorXObjetivoId id;
 	
-	
-	@ManyToOne(fetch = FetchType.EAGER) //Lo pongo en EAGER para no corregir el problema de Error org.hibernate.LazyInitializationException: could not initialize proxy - no Session .
+//	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("indicadorId")
 	private Indicador indicador;
 	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("objetivoId")
 	private Objetivo objetivo;
 		

@@ -15,17 +15,14 @@ import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Perspectiva;
 import tesis.bsc.repository.EstrategiaRepository;
 import tesis.bsc.repository.PerspectivaRepository;
+import tesis.bsc.service.EstrategiaService;
 
 @RestController
 @RequestMapping("estrategias")
 public class EstrategiaRestController {
 	
 	@Autowired
-	private EstrategiaRepository estrategiaRepository;
-	
-	@Autowired 
-	private PerspectivaRepository perspectivaRepository;
-
+	private EstrategiaService estrategiaService;
 	
 	/*
 	 * PATH: /estrategias
@@ -34,15 +31,14 @@ public class EstrategiaRestController {
 	//Get all Estrategias
 	@GetMapping
     public Collection<Estrategia> findAllEstrategias() {
-        return ((Collection<Estrategia>) estrategiaRepository.findAll());
+        return estrategiaService.findAllEstrategias();
         
     }
 	
 	//Create Estrategia
 	@PostMapping
 	public Estrategia addEstrategia(@RequestBody Estrategia estrategia) {
-	    estrategiaRepository.save(estrategia);
-	    return estrategia;
+	    return estrategiaService.addEstrategia(estrategia);
 	}
 	
 	/*
@@ -52,27 +48,19 @@ public class EstrategiaRestController {
 	//Get ESTRATEGIA by ID
 	@GetMapping(path="/{idEstrategia}")
 	public Estrategia getEstrategia(@PathVariable("idEstrategia") int id) {
-		Estrategia estrategia = estrategiaRepository.findById(id).orElse(null);
-		return estrategia;
+		return estrategiaService.getEstrategia(id);
 	}
 	
 	//Update Estrategia by ID
 	@PutMapping(path="/{idEstrategia}")
 	public Estrategia updateEstrategia(@PathVariable("idEstrategia") int id, @RequestBody Estrategia estrategia) {
-		Estrategia e = estrategiaRepository.findById(id).orElse(null);
-		e.setNombre(estrategia.getNombre());
-		e.setMision(estrategia.getMision());
-		e.setVision(estrategia.getVision());
-		return estrategiaRepository.save(e);		
+		return estrategiaService.updateEstrategia(id, estrategia);			
 	}
 	
 	//Delete Estrategia by ID
 	@DeleteMapping(path="{idEstrategia}")
-	public Estrategia deleteEstrategia(@PathVariable("idEstrategia") int id) {
-		Estrategia e = estrategiaRepository.findById(id).orElse(null);
-		Estrategia estrategiaEliminada = e.cloneEstrategia();
-		estrategiaRepository.delete(e);
-		return estrategiaEliminada;
+	public void deleteEstrategia(@PathVariable("idEstrategia") int id) {
+		estrategiaService.deleteEstrategia(id);
 	} 
 	
 	/*
@@ -82,27 +70,20 @@ public class EstrategiaRestController {
 	//Get all perspectivasAfectantes
 	@GetMapping(path = "/{idEstrategia}/perspectivasAfectantes")
 	public Collection<Perspectiva> getPerspectivasAfectantes(@PathVariable("idEstrategia") int id){
-		Estrategia estrategia = estrategiaRepository.findById(id).orElse(null);
-		return estrategia.getPerspectivasAfectantes();
+		return estrategiaService.getPerspectivasAfectantes(id);
+		
 	}
 	
 	//Add Perspectiva to perspectivasAfectantes by ID
 	@PostMapping(path = "/{idEstrategia}/perspectivasAfectantes")
-	public Collection<Perspectiva> addPerspectivaAfectante(@PathVariable("idEstrategia") int id, @RequestBody Perspectiva perspectiva) {
-		Estrategia estrategia = estrategiaRepository.findById(id).orElse(null);
-		estrategia.addPerspectiva(perspectiva);
-		estrategiaRepository.save(estrategia);
-		return estrategia.getPerspectivasAfectantes();
+	public Estrategia addPerspectivaAfectante(@PathVariable("idEstrategia") int id, @RequestBody Perspectiva perspectiva) {
+		return estrategiaService.addPerspectivaAfectante(id, perspectiva);
 	}
 	
 	//Delete Perspectiva from perspectivasAfectantes by ID
 	@DeleteMapping(path = "/{idEstrategia}/perspectivasAfectantes")
-	public Collection<Perspectiva> deletePerspectivaAfectante(@PathVariable("idEstrategia") int id, @RequestBody Perspectiva perspectiva) {
-		Estrategia estrategia = estrategiaRepository.findById(id).orElse(null);
-		Perspectiva perspectivaAfectante = perspectivaRepository.findById(perspectiva.getId()).orElse(null);
-		estrategia.removePerspectiva(perspectivaAfectante);
-		estrategiaRepository.save(estrategia);
-		return estrategia.getPerspectivasAfectantes();
+	public void deletePerspectivaAfectante(@PathVariable("idEstrategia") int id, @RequestBody Perspectiva perspectiva) {
+		estrategiaService.deletePerspectivaAfectante(id, perspectiva);
 	}
 	
 	

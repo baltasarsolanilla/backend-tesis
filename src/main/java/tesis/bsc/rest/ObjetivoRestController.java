@@ -12,17 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tesis.bsc.model.Indicador;
 import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.Perspectiva;
 import tesis.bsc.repository.ObjetivoRepository;
+import tesis.bsc.requestBodyObject.IndicadorPeso;
+import tesis.bsc.service.ObjetivoService;
 
 @RestController
 @RequestMapping("objetivos")
 public class ObjetivoRestController {
 	
 	@Autowired
-	private ObjetivoRepository objetivoRepository;
+	private ObjetivoService objetivoService;
 	
 	/*
 	 * PATH: /objetivos
@@ -31,14 +34,13 @@ public class ObjetivoRestController {
 	//Get all Objetivos -- TEST PURPOSE ONLY
 	@GetMapping
 	public Collection<Objetivo> findAllObjetivos(){
-		return (Collection<Objetivo>) objetivoRepository.findAll();
+		return objetivoService.findAllObjetivos();
 	}
 	
 	//Create Objetivo -- TEST PURPOSE ONLY
 	@PostMapping
 	public Objetivo addObjetivo(@RequestBody Objetivo objetivo) {
-		objetivoRepository.save(objetivo);
-		return objetivo;
+		return objetivoService.addObjetivo(objetivo);
 	}
 
 	/*
@@ -48,26 +50,19 @@ public class ObjetivoRestController {
 	//Get Objetivo by ID
 	@GetMapping(path="/{idObjetivo}")
 	public Objetivo getObjetivo(@PathVariable("idObjetivo") int id) {
-		Objetivo objetivo = objetivoRepository.findById(id).orElse(null);
-		return objetivo;
+		return objetivoService.getObjetivo(id);
 	}
 	
 	//Update Objetivo by ID
 	@PutMapping(path="/{idObjetivo}")
 	public Objetivo updateObjetivo(@PathVariable("idObjetivo") int id, @RequestBody Objetivo objetivo) {
-		Objetivo o = objetivoRepository.findById(id).orElse(null);
-		o.setNombre(objetivo.getNombre());
-		o.setDescripcion(objetivo.getDescripcion());
-		return objetivoRepository.save(o);		
+		return objetivoService.updateObjetivo(id, objetivo);	
 	}
 	
 	//Delete Objetivo by ID
 	@DeleteMapping(path="{idObjetivo}")
-	public Objetivo deleteObjetivo(@PathVariable("idObjetivo") int id) {
-		Objetivo o = objetivoRepository.findById(id).orElse(null);
-		Objetivo objetivoEliminado = o.cloneObjetivo();
-		objetivoRepository.delete(o);
-		return objetivoEliminado;
+	public void deleteObjetivo(@PathVariable("idObjetivo") int id) {
+		objetivoService.deleteObjetivo(id);
 	}
 	
 	/*
@@ -77,27 +72,19 @@ public class ObjetivoRestController {
 	//Get all indicadoresAfectantes
 	@GetMapping("{idObjetivo}/indicadoresAfectantes")
 	public Collection<IndicadorXObjetivo> getIndicadoresAfectantes(@PathVariable("idObjetivo") int id){
-		Objetivo objetivo = objetivoRepository.findById(id).orElse(null);
-		return objetivo.getIndicadoresAfectantes();
+		return objetivoService.getIndicadoresAfectantes(id);
 	}
 
-//		
-//		//Add Objetivo to objetivosAfectantes by ID
-//		@PostMapping(path = "/{idPerspectiva}/objetivosAfectantes")
-//		public Collection<Objetivo> addObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
-//			Perspectiva perspectiva = perspectivaRepository.findById(id).orElse(null);
-//			perspectiva.addObjetivo(objetivo);
-//			perspectivaRepository.save(perspectiva);
-//			return perspectiva.getObjetivosAfectantes();
-//		}
-//		
-//		//Delete Objetivo from objetivosAfectantes by ID
-//		@DeleteMapping(path = "/{idPerspectiva}/objetivosAfectantes")
-//		public Collection<Objetivo> deleteObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
-//			Perspectiva perspectiva = perspectivaRepository.findById(id).orElse(null);
-//			Objetivo objetivoAfectante = objetivoRepository.findById(objetivo.getId()).orElse(null);
-//			perspectiva.removeObjetivo(objetivoAfectante);
-//			perspectivaRepository.save(perspectiva);
-//			return perspectiva.getObjetivosAfectantes();
-//		}
+	
+	//Add Indicador to indicadoresAfectantes by ID
+	@PostMapping(path = "/{idObjetivo}/indicadoresAfectantes")
+	public Objetivo addIndicadorAfectante(@PathVariable("idObjetivo") int id, @RequestBody IndicadorPeso indicadorPeso) {
+		return objetivoService.addIndicadorAfectante(id, indicadorPeso.getIdIndicador(), indicadorPeso.getPeso());
+	}
+		
+	//Delete IndicadorAfectante from indicadoresAfectantes by ID
+	@DeleteMapping(path = "/{idObjetivo}/indicadoresAfectantes")
+	public Objetivo deleteIndicadorAfectante(@PathVariable("idObjetivo") int id, @RequestBody Indicador indicador) {
+		return objetivoService.deleteIndicadorAfectante(id, indicador);
+	}
 }

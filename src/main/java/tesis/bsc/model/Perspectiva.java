@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,12 +41,12 @@ public @Data class Perspectiva {
 	}
 	
 	
-	public void addObjetivo(Objetivo o) {
-		this.objetivosAfectantes.add(o);
+	public boolean addObjetivo(Objetivo o) {
+		return this.objetivosAfectantes.add(o);
 	}
 	
-	public void removeObjetivo(Objetivo o) {
-		this.objetivosAfectantes.remove(o);
+	public boolean removeObjetivo(Objetivo o) {
+		return this.objetivosAfectantes.remove(o);
 	}
 	
 	

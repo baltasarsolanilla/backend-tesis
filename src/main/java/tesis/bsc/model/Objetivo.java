@@ -1,5 +1,6 @@
 package tesis.bsc.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,8 +19,13 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 @Entity
-public @Data class Objetivo {
+public @Data class Objetivo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -48,13 +54,13 @@ public @Data class Objetivo {
 		return o_clone;
 	}
 		
-	public void addIndicador(Indicador indicador, Float peso) {
+	public boolean addIndicador(Indicador indicador, Float peso) {
 		IndicadorXObjetivo ixo = new IndicadorXObjetivo(this, indicador, peso);
-		this.indicadoresAfectantes.add(ixo);
+		return this.indicadoresAfectantes.add(ixo);
 //		indicador.getObjetivosAsociados().add(ixo);
 	}
 	
-	public void removeIndicador(Indicador indicador) {
+	public boolean removeIndicador(Indicador indicador) {
 		Iterator<IndicadorXObjetivo> iterator = this.indicadoresAfectantes.iterator();
 		while (iterator.hasNext()) {
 			IndicadorXObjetivo ixo = iterator.next();
@@ -63,8 +69,10 @@ public @Data class Objetivo {
 //				ixo.getIndicador().getObjetivosAsociados().remove(ixo);
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	@Override
