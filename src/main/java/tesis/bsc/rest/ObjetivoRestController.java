@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
-import tesis.bsc.model.Perspectiva;
-import tesis.bsc.repository.ObjetivoRepository;
 import tesis.bsc.requestBodyObject.IndicadorPeso;
 import tesis.bsc.service.ObjetivoService;
 

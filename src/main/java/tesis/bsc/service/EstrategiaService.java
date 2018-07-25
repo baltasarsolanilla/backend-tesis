@@ -1,14 +1,9 @@
 package tesis.bsc.service;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tesis.bsc.repository.EstrategiaRepository;
 import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Perspectiva;

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.Perspectiva;
-import tesis.bsc.repository.ObjetivoRepository;
-import tesis.bsc.repository.PerspectivaRepository;
 import tesis.bsc.service.PerspectivaService;
 
 @RestController

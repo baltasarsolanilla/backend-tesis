@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Perspectiva;
-import tesis.bsc.repository.EstrategiaRepository;
-import tesis.bsc.repository.PerspectivaRepository;
 import tesis.bsc.service.EstrategiaService;
 
 @RestController
