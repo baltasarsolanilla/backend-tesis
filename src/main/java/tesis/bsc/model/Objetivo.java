@@ -36,6 +36,10 @@ public @Data class Objetivo implements Serializable{
 	@OneToMany(mappedBy = "objetivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IndicadorXObjetivo> indicadoresAfectantes;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "objetivo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ObjetivoXObjetivo> objetivosAfectantes;
+	
 	public Objetivo() { //JPA only
     }
 	
@@ -56,7 +60,6 @@ public @Data class Objetivo implements Serializable{
 	public boolean addIndicador(Indicador indicador, Float peso) {
 		IndicadorXObjetivo ixo = new IndicadorXObjetivo(this, indicador, peso);
 		return this.indicadoresAfectantes.add(ixo);
-//		indicador.getObjetivosAsociados().add(ixo);
 	}
 	
 	public boolean removeIndicador(Indicador indicador) {
@@ -65,9 +68,27 @@ public @Data class Objetivo implements Serializable{
 			IndicadorXObjetivo ixo = iterator.next();
 			if (ixo.getObjetivo().equals(this) && ixo.getIndicador().equals(indicador)) {
 				iterator.remove();
-//				ixo.getIndicador().getObjetivosAsociados().remove(ixo);
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean addObjetivo(Objetivo objetivoAfectante, Float peso) {
+		ObjetivoXObjetivo oxo = new ObjetivoXObjetivo(this, objetivoAfectante, peso);
+		return this.objetivosAfectantes.add(oxo);
+	}
+	
+	public boolean removeObjetivo(Objetivo objetivoAfectante) {
+		Iterator<ObjetivoXObjetivo> iterator = this.objetivosAfectantes.iterator();
+		while (iterator.hasNext()) {
+			ObjetivoXObjetivo oxo = iterator.next();
+			if (oxo.getObjetivo().equals(this) && oxo.getObjetivoAfectante().equals(objetivoAfectante)) {
+				iterator.remove();
+				oxo.setObjetivo(null);
+				oxo.setObjetivoAfectante(null);
 				return true;
 			}
 		}

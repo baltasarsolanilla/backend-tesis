@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.repository.ObjetivoRepository;
 
@@ -64,6 +65,27 @@ public class ObjetivoService {
 	public Objetivo deleteIndicadorAfectante(Integer id, Indicador i) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeIndicador(i);
+		return objetivoRepository.save(o);
+	}
+	
+	/*
+	 * ObjetivosAfectantes
+	 */
+	
+	public List<ObjetivoXObjetivo> getObjetivosAfectantes(Integer id){
+		return objetivoRepository.findById(id).orElse(null).getObjetivosAfectantes(); 
+	}
+	
+	public Objetivo addObjetivoAfectante(Integer id, Integer idObjetivoAfectante, Float peso) {
+		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		Objetivo objetivoAfectante = objetivoRepository.findById(idObjetivoAfectante).orElse(null);
+		o.addObjetivo(objetivoAfectante, peso);
+		return objetivoRepository.save(o);
+	}
+	
+	public Objetivo deleteObjetivoAfectante(Integer id, Objetivo objetivoAfectante) {
+		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		o.removeObjetivo(objetivoAfectante);
 		return objetivoRepository.save(o);
 	}
 }

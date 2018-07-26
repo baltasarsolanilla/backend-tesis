@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.requestBodyObject.IndicadorPeso;
+import tesis.bsc.requestBodyObject.ObjetivoPeso;
 import tesis.bsc.service.ObjetivoService;
 
 @RestController
@@ -74,7 +76,7 @@ public class ObjetivoRestController {
 	}
 
 	
-	//Add Indicador to indicadoresAfectantes by ID
+	//Add IndicadorAfectante to indicadoresAfectantes by ID
 	@PostMapping(path = "/{idObjetivo}/indicadoresAfectantes")
 	public Objetivo addIndicadorAfectante(@PathVariable("idObjetivo") int id, @RequestBody IndicadorPeso indicadorPeso) {
 		return objetivoService.addIndicadorAfectante(id, indicadorPeso.getIdIndicador(), indicadorPeso.getPeso());
@@ -84,5 +86,27 @@ public class ObjetivoRestController {
 	@DeleteMapping(path = "/{idObjetivo}/indicadoresAfectantes")
 	public Objetivo deleteIndicadorAfectante(@PathVariable("idObjetivo") int id, @RequestBody Indicador indicador) {
 		return objetivoService.deleteIndicadorAfectante(id, indicador);
+	}
+	
+	/*
+	 * PATH: /objetivos/{idObjetivo}/objetivosAfectantes
+	 */
+	
+	//Get all objetivosAfectantes
+	@GetMapping("{idObjetivo}/objetivosAfectantes")
+	public Collection<ObjetivoXObjetivo> getObjetivosAfectantes(@PathVariable("idObjetivo") int id){
+		return objetivoService.getObjetivosAfectantes(id);
+	}
+	
+	//Add ObjetivoAfectante to objetivosAfectantes by ID
+	@PostMapping("{idObjetivo}/objetivosAfectantes")
+	public Objetivo addObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody ObjetivoPeso objetivoPeso) {
+		return objetivoService.addObjetivoAfectante(id, objetivoPeso.getIdObjetivoAfectante(), objetivoPeso.getPeso());
+	}
+	
+	//Delete ObjetivoAfectante to objetivosAfectantes by ID
+	@DeleteMapping("{idObjetivo}/objetivosAfectantes")
+	public Objetivo deleteObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody Objetivo objetivoAfectante) {
+		return objetivoService.deleteObjetivoAfectante(id, objetivoAfectante);
 	}
 }
