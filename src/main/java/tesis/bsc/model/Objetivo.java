@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.envers.Audited;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -31,6 +33,8 @@ public @Data class Objetivo implements Serializable{
 	
 	private String nombre;
 	private String descripcion;
+	
+	@Audited(withModifiedFlag=true)
 	private Float valor;
 	
 	@JsonManagedReference
