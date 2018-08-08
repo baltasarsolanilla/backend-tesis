@@ -31,6 +31,7 @@ public @Data class Objetivo implements Serializable{
 	
 	private String nombre;
 	private String descripcion;
+	private Float valor;
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "objetivo", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -60,7 +61,9 @@ public @Data class Objetivo implements Serializable{
 	public boolean addIndicador(Indicador indicador, Float peso) {
 		IndicadorXObjetivo ixo = new IndicadorXObjetivo(this, indicador, peso);
 		indicador.getObjetivosQueAfecto().add(ixo);
-		return this.indicadoresAfectantes.add(ixo);
+		this.indicadoresAfectantes.add(ixo);
+		this.actualizar();
+		return true;
 	}
 	
 	public boolean removeIndicador(Indicador indicador) {
@@ -72,6 +75,7 @@ public @Data class Objetivo implements Serializable{
 				ixo.getIndicador().getObjetivosQueAfecto().remove(ixo);
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
+				this.actualizar();
 				return true;
 			}
 		}
@@ -108,4 +112,21 @@ public @Data class Objetivo implements Serializable{
     public int hashCode() {
         return Objects.hash(this.nombre);
     }
+    
+    /*
+     * Observer
+     * Este método actualiza el "valor",
+     * de acuerdo a los indicadores y objetivos que lo afecten.
+     */
+    
+    public void actualizar() {
+    	System.out.println("ActualizarValor: " + this.valor);
+    	float nuevo_valor = 0.0f;
+    	if (indicadoresAfectantes != null)
+    		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
+    			nuevo_valor += ixo.getPeso() * ixo.getIndicador().getValor();
+    		}
+    	this.setValor(nuevo_valor);
+    }
 }
+

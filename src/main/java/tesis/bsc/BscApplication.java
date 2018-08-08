@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tesis.bsc.model.Indicador;
+import tesis.bsc.model.Objetivo;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.service.EstrategiaService;
 import tesis.bsc.service.ObjetivoService;
@@ -43,6 +44,10 @@ public class BscApplication implements CommandLineRunner{
 		i3 = indicadorRepository.save(i3);
 		Indicador i4 = new Indicador("i4", 4.0F);
 		i4 = indicadorRepository.save(i4);
+		
+		objetivoService.addObjetivo(new Objetivo("o1", "do1"));
+		objetivoService.addObjetivo(new Objetivo("o2", "do2"));
+		objetivoService.addObjetivo(new Objetivo("o3", "do3"));
 		
 	}
 }

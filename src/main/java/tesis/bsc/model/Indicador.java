@@ -1,6 +1,7 @@
 package tesis.bsc.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,6 +41,7 @@ public @Data class Indicador implements Serializable{
 	public Indicador(String nombre, Float valor) {
 		this.nombre = nombre;
 		this.valor = valor;
+		objetivosQueAfecto = new ArrayList<>();
 	}
 	
 	@Override
@@ -52,5 +54,20 @@ public @Data class Indicador implements Serializable{
     @Override
     public int hashCode() {
         return  Objects.hash(this.id);
+    }
+    
+    /*
+     * Observable
+     */
+    
+    public void setValor(Float valor) {
+    	this.valor = valor;
+    	notificarObjetivos();
+    }
+      
+    public void notificarObjetivos() {
+    	if (objetivosQueAfecto != null)
+    		for (IndicadorXObjetivo ixo : objetivosQueAfecto)
+    			ixo.getObjetivo().actualizar();
     }
 }
