@@ -59,6 +59,7 @@ public @Data class Objetivo implements Serializable{
 		
 	public boolean addIndicador(Indicador indicador, Float peso) {
 		IndicadorXObjetivo ixo = new IndicadorXObjetivo(this, indicador, peso);
+		indicador.getObjetivosQueAfecto().add(ixo);
 		return this.indicadoresAfectantes.add(ixo);
 	}
 	
@@ -68,6 +69,7 @@ public @Data class Objetivo implements Serializable{
 			IndicadorXObjetivo ixo = iterator.next();
 			if (ixo.getObjetivo().equals(this) && ixo.getIndicador().equals(indicador)) {
 				iterator.remove();
+				ixo.getIndicador().getObjetivosQueAfecto().remove(ixo);
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
 				return true;

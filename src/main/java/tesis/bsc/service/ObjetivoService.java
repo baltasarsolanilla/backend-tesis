@@ -59,13 +59,13 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		Indicador i = indicadorRepository.findById(indicadorId).orElse(null);
 		o.addIndicador(i, peso);
-		return objetivoRepository.save(o);
+		return o;
 	}
 	
 	public Objetivo deleteIndicadorAfectante(Integer id, Indicador i) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeIndicador(i);
-		return objetivoRepository.save(o);
+		return o;
 	}
 	
 	/*

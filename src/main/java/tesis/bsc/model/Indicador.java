@@ -1,12 +1,17 @@
 package tesis.bsc.model;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -24,6 +29,10 @@ public @Data class Indicador implements Serializable{
 	
 	private String nombre;
 	private Float valor;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "indicador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IndicadorXObjetivo> objetivosQueAfecto;
 	
 	public Indicador() { //JPA ONLY
     }
