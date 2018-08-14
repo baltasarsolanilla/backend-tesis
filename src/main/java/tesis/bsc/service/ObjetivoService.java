@@ -39,15 +39,17 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.setNombre(objetivo.getNombre());
 		o.setDescripcion(objetivo.getDescripcion());
-		o.setValor(objetivo.getValor());
-//		List<ObjetivoXObjetivo> objetivosQueAfecto = objetivoRepository.
-		Objetivo o1 = objetivoRepository.findObjetivoByIdentificador(id);
-		Indicador i1 = objetivoRepository.findIndicadorEnObjetivo(id);
-		List<ObjetivoXObjetivo> oxoList = objetivoRepository.findObjetivosXObjetivosById(id);
-		List<ObjetivoXObjetivo> oxoList2 = objetivoRepository.findObjetivosXObjetivosQueAfectoById(id);
-		
-		
+		//No tiene setValor porque el valor es calculado puramente por indicadores.
+		List<Objetivo> oxoList2 = objetivoRepository.findAllObjetivosQueAfectoById(id);
 		return objetivoRepository.save(o);
+	}
+	
+	public void actualizarObjetivosQueAfecto(Objetivo o) {
+		List<Objetivo> objetivosQueAfecto = objetivoRepository.findAllObjetivosQueAfectoById(o.getId());
+		for (Objetivo obj : objetivosQueAfecto) {
+			obj.actualizar();
+			this.actualizarObjetivosQueAfecto(obj);
+		}
 	}
 	
 	public void deleteObjetivo(Integer id) {

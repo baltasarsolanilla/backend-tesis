@@ -31,17 +31,12 @@ public @Data class Indicador implements Serializable{
 	private String nombre;
 	private Float valor;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "indicador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<IndicadorXObjetivo> objetivosQueAfecto;
-	
 	public Indicador() { //JPA ONLY
     }
 	
 	public Indicador(String nombre, Float valor) {
 		this.nombre = nombre;
 		this.valor = valor;
-		objetivosQueAfecto = new ArrayList<>();
 	}
 	
 	@Override
@@ -62,12 +57,5 @@ public @Data class Indicador implements Serializable{
     
     public void setValor(Float valor) {
     	this.valor = valor;
-    	notificarObjetivos();
-    }
-      
-    public void notificarObjetivos() {
-    	if (objetivosQueAfecto != null)
-    		for (IndicadorXObjetivo ixo : objetivosQueAfecto)
-    			ixo.getObjetivo().actualizar();
     }
 }

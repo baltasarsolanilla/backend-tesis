@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.hibernate.envers.Audited;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -27,6 +25,7 @@ public @Data class Objetivo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final float CERO = 0.0f;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -55,6 +54,7 @@ public @Data class Objetivo implements Serializable{
 		this.objetivosAfectantes = new ArrayList<>();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.valor = CERO;
 	}
     
 	public Objetivo cloneObjetivo() {
@@ -67,7 +67,6 @@ public @Data class Objetivo implements Serializable{
 		
 	public boolean addIndicador(Indicador indicador, Float peso) {
 		IndicadorXObjetivo ixo = new IndicadorXObjetivo(this, indicador, peso);
-		indicador.getObjetivosQueAfecto().add(ixo);
 		this.indicadoresAfectantes.add(ixo);
 		this.actualizar();
 		return true;
@@ -79,7 +78,6 @@ public @Data class Objetivo implements Serializable{
 			IndicadorXObjetivo ixo = iterator.next();
 			if (ixo.getObjetivo().equals(this) && ixo.getIndicador().equals(indicador)) {
 				iterator.remove();
-				ixo.getIndicador().getObjetivosQueAfecto().remove(ixo);
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
 				this.actualizar();
@@ -129,10 +127,16 @@ public @Data class Objetivo implements Serializable{
     public void actualizar() {
     	System.out.println("ActualizarValor: " + this.valor);
     	float nuevo_valor = 0.0f;
-    	if (indicadoresAfectantes != null)
+    	if (indicadoresAfectantes != null) {
     		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
     			nuevo_valor += ixo.getPeso() * ixo.getIndicador().getValor();
     		}
+    	}
+    	if (objetivosAfectantes != null) {
+    		for (ObjetivoXObjetivo oxo : objetivosAfectantes) {
+    			nuevo_valor += oxo.getPeso() * oxo.getObjetivoAfectante().getValor();
+    		}
+    	}
     	this.setValor(nuevo_valor);
     }
 }

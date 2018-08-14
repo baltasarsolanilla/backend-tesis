@@ -1,9 +1,6 @@
 package tesis.bsc.repository;
 
 import java.util.List;
-import java.util.Optional;
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,11 +16,18 @@ public interface ObjetivoRepository extends JpaRepository<Objetivo, Integer> {
 	 @Query("SELECT i FROM Indicador i WHERE i.id = :id") 
 	 Indicador findIndicadorEnObjetivo(@Param("id") Integer id);
 	 
+	 //Objetivos que me afectan -> objetivo(id) - objetivoAfectante
 	 @Query("SELECT oxo FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoId = :id")
 	 List<ObjetivoXObjetivo> findObjetivosXObjetivosById(@Param("id") Integer id);
 	 
-	 @Query("SELECT oxo FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoAfectanteId = :id")
-	 List<ObjetivoXObjetivo> findObjetivosXObjetivosQueAfectoById(@Param("id") Integer id); 
+//	 //Objetivos que afecto. -> objetivoQueAfecto - objetivo(id)
+//	 @Query("SELECT oxo FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoAfectanteId = :id")
+//	 List<ObjetivoXObjetivo> findObjetivosXObjetivosQueAfectoById(@Param("id") Integer id);
+	 
+	 //Objetivos que afecto. -> objetivoQueAfecto - objetivo(id)
+	 @Query("SELECT oxo.objetivoAfectante FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoAfectanteId = :id")
+	 List<Objetivo> findAllObjetivosQueAfectoById(@Param("id") Integer id);
+	 
 	 
 	 @Query("SELECT o FROM Objetivo o WHERE o.id = :id")
 	 Objetivo findObjetivoByIdentificador(@Param("id") Integer id);
