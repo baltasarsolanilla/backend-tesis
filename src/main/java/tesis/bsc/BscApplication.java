@@ -41,8 +41,14 @@ public class BscApplication implements CommandLineRunner{
 		indicadorRepository.save(new Indicador("i2", 2.0F));
 		indicadorRepository.save(new Indicador("i3", 3.0F));
 		
-//		objetivoService.addObjetivo(new Objetivo("o1", "do1"));
-//		objetivoService.addObjetivo(new Objetivo("o2", "do2"));
+		objetivoService.addObjetivo(new Objetivo("o1", "do1"));
+		objetivoService.addObjetivo(new Objetivo("o2", "do2"));
+		objetivoService.addObjetivo(new Objetivo("o3", "do3"));
+		objetivoService.addObjetivoAfectante(1, 2, 10.0f);
+		objetivoService.addObjetivoAfectante(3, 1, 10.0f);
+		
+		objetivoService.updateObjetivo(1, new Objetivo("o1", "descripcion_long"));
+		
 //		objetivoService.addObjetivo(new Objetivo("o3", "do3"));
 		
 	}

@@ -39,6 +39,14 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.setNombre(objetivo.getNombre());
 		o.setDescripcion(objetivo.getDescripcion());
+		o.setValor(objetivo.getValor());
+//		List<ObjetivoXObjetivo> objetivosQueAfecto = objetivoRepository.
+		Objetivo o1 = objetivoRepository.findObjetivoByIdentificador(id);
+		Indicador i1 = objetivoRepository.findIndicadorEnObjetivo(id);
+		List<ObjetivoXObjetivo> oxoList = objetivoRepository.findObjetivosXObjetivosById(id);
+		List<ObjetivoXObjetivo> oxoList2 = objetivoRepository.findObjetivosXObjetivosQueAfectoById(id);
+		
+		
 		return objetivoRepository.save(o);
 	}
 	

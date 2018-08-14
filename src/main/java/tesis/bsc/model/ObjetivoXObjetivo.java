@@ -30,13 +30,11 @@ public @Data class ObjetivoXObjetivo implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("objetivoId")
 	private Objetivo objetivo;
-	
 		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("objetivoAfectanteId")
 	private Objetivo objetivoAfectante;
-
-
+	
 	private Float peso;
 	
 	

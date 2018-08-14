@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.envers.Audited;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -44,12 +45,14 @@ public @Data class Objetivo implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "objetivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ObjetivoXObjetivo> objetivosAfectantes;
+		
 	
 	public Objetivo() { //JPA only
     }
 	
 	public Objetivo(String nombre, String descripcion) {
 		this.indicadoresAfectantes = new ArrayList<>();
+		this.objetivosAfectantes = new ArrayList<>();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
