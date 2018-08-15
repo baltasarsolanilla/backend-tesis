@@ -1,5 +1,7 @@
 package tesis.bsc;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -58,13 +60,42 @@ public class BscApplication implements CommandLineRunner{
 		
 		
 		///PRUEBA DE INDICADORxObjetivo
+		indicadorService.addIndicador(new Indicador("i1", 2.0F));
+		indicadorService.addIndicador(new Indicador("i2", 3.0F));
+		indicadorService.addIndicador(new Indicador("i3", 5.0F));
 		
-		indicadorService.addIndicador(new Indicador("i1", 1.0F));
 		objetivoService.addObjetivo(new Objetivo("o1", "do1"));
 		objetivoService.addObjetivo(new Objetivo("o2", "do2"));
-		objetivoService.addIndicadorAfectante(1, 1, 10.0f);
-		objetivoService.addObjetivoAfectante(1, 2, 25.0f);
-		indicadorService.updateIndicador(1, new Indicador("i1", 5.0F));
+		objetivoService.addObjetivo(new Objetivo("o3", "do3"));
+		
+		objetivoService.addIndicadorAfectante(1, 1, 2.0f);
+		objetivoService.addIndicadorAfectante(2, 2, 3.0f);
+		objetivoService.addIndicadorAfectante(3, 3, 5.0f);
+		
+		objetivoService.addObjetivoAfectante(1, 2, 2.0f); // 1 <- 2
+		objetivoService.addObjetivoAfectante(2, 3, 3.0f); // 1 <- 2
+		
+		//Formula: ox = i.val * peso + o.val * peso
+		//Valores esperados:
+		/*
+		 * o1 = 2 * 2 + o2.val(84) * 2 -- o1 = 172
+		 * o2 = 3 * 3 + o3.val(25) * 3 -- o2 = 84
+		 * o3 = 5 * 5 -- o3 = 25
+		 */
+		List<Objetivo> objs1 = objetivoService.findAllObjetivos();
+		
+		indicadorService.updateIndicador(2, new Indicador("i1", 7.0f));
+		//Formula: ox = i.val * peso + o.val * peso
+		//Valores esperados:
+		/*
+		 * o1 = 2 * 2 + o2.val(84) * 2 -- o1 = 172
+		 * o2 = 3 * 3 + o3.val(25) * 3 -- o2 = 84
+		 * o3 = 5 * 5 -- o3 = 25
+		 */
+		List<Objetivo> objs2 = objetivoService.findAllObjetivos();
+				
+//		objetivoService.deleteObjetivo(2);
+//		indicadorService.deleteIndicador(1);
 		
 	}
 }

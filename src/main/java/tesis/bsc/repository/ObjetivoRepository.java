@@ -25,7 +25,7 @@ public interface ObjetivoRepository extends JpaRepository<Objetivo, Integer> {
 //	 List<ObjetivoXObjetivo> findObjetivosXObjetivosQueAfectoById(@Param("id") Integer id);
 	 
 	 //Objetivos que afecto. -> objetivoQueAfecto - objetivo(id)
-	 @Query("SELECT oxo.objetivoAfectante FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoAfectanteId = :id")
+	 @Query("SELECT oxo.objetivo FROM ObjetivoXObjetivo oxo WHERE oxo.id.objetivoAfectanteId = :id")
 	 List<Objetivo> findAllObjetivosQueAfectoById(@Param("id") Integer id);
 	 
 	 

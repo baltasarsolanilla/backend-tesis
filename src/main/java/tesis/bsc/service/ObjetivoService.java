@@ -39,21 +39,32 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.setNombre(objetivo.getNombre());
 		o.setDescripcion(objetivo.getDescripcion());
-		//No tiene setValor porque el valor es calculado puramente por indicadores.
-		List<Objetivo> oxoList2 = objetivoRepository.findAllObjetivosQueAfectoById(id);
 		return objetivoRepository.save(o);
 	}
 	
+	/**
+	 * Este método actualiza el objetivo "o" y propaga la actualizacion.
+	 * @param o
+	 */
+	public void actualizarObjetivo(Objetivo o) {
+		o.actualizar();
+		this.actualizarObjetivosQueAfecto(o);
+	}
+	
+	/**
+	 * Este método actualiza todos los objetivos que afecta el objetivo "o".
+	 * @param o
+	 */
 	public void actualizarObjetivosQueAfecto(Objetivo o) {
 		List<Objetivo> objetivosQueAfecto = objetivoRepository.findAllObjetivosQueAfectoById(o.getId());
 		for (Objetivo obj : objetivosQueAfecto) {
-			obj.actualizar();
-			this.actualizarObjetivosQueAfecto(obj);
+			this.actualizarObjetivo(obj);
 		}
 	}
 	
 	public void deleteObjetivo(Integer id) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		this.actualizarObjetivosQueAfecto(o);
 		objetivoRepository.delete(o);
 	}
 	
@@ -69,12 +80,14 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		Indicador i = indicadorRepository.findById(indicadorId).orElse(null);
 		o.addIndicador(i, peso);
+		this.actualizarObjetivo(o);
 		return o;
 	}
 	
 	public Objetivo deleteIndicadorAfectante(Integer id, Indicador i) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeIndicador(i);
+		this.actualizarObjetivo(o);
 		return o;
 	}
 	
@@ -90,12 +103,14 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		Objetivo objetivoAfectante = objetivoRepository.findById(idObjetivoAfectante).orElse(null);
 		o.addObjetivo(objetivoAfectante, peso);
+		this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
 	}
 	
 	public Objetivo deleteObjetivoAfectante(Integer id, Objetivo objetivoAfectante) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeObjetivo(objetivoAfectante);
+		this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
 	}
 }

@@ -41,8 +41,7 @@ public class IndicadorService {
 	public void actualizarObjetivosQueAfecto(Indicador i) {
 		List<Objetivo> objetivosQueAfecto = indicadorRepository.findAllObjetivosQueAfectoById(i.getId());
 		for (Objetivo obj : objetivosQueAfecto) {
-			obj.actualizar();
-			objetivoService.actualizarObjetivosQueAfecto(obj);
+			objetivoService.actualizarObjetivo(obj);
 		}
 	}
 
