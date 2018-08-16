@@ -88,12 +88,21 @@ public class BscApplication implements CommandLineRunner{
 		//Formula: ox = i.val * peso + o.val * peso
 		//Valores esperados:
 		/*
-		 * o1 = 2 * 2 + o2.val(84) * 2 -- o1 = 172
-		 * o2 = 3 * 3 + o3.val(25) * 3 -- o2 = 84
+		 * o1 = 2 * 2 + o2.val(96) * 2 -- o1 = 196
+		 * o2 = 7 * 3 + o3.val(25) * 3 -- o2 = 96
 		 * o3 = 5 * 5 -- o3 = 25
 		 */
 		List<Objetivo> objs2 = objetivoService.findAllObjetivos();
-				
+		
+		objetivoService.deleteObjetivoAfectante(2, objetivoService.getObjetivo(3));
+		//Formula: ox = i.val * peso + o.val * peso
+		//Valores esperados:
+		/*
+		 * o1 = 2 * 2 + o2.val(21) * 2 -- o1 = 46
+		 * o2 = 7 * 3 + o3.val(0) * 3 -- o2 = 21
+		 * o3 = 5 * 5 -- o3 = 25
+		 */
+		List<Objetivo> objs3 = objetivoService.findAllObjetivos();
 //		objetivoService.deleteObjetivo(2);
 //		indicadorService.deleteIndicador(1);
 		

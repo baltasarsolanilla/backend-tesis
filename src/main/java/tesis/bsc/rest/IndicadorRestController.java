@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import tesis.bsc.model.Indicador;
-import tesis.bsc.model.Objetivo;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.service.IndicadorService;
 
