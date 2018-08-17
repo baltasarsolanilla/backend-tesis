@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.repository.ObjetivoRepository;
 import tesis.bsc.service.EstrategiaService;
 import tesis.bsc.service.ObjetivoService;
 import tesis.bsc.service.PerspectivaService;
@@ -25,6 +26,9 @@ public class BscApplication implements CommandLineRunner{
 	
 	@Autowired
 	ObjetivoService objetivoService;
+	
+	@Autowired
+	private ObjetivoRepository objetivoRepository;
 	
 	@Autowired
 	IndicadorService indicadorService;
@@ -105,6 +109,17 @@ public class BscApplication implements CommandLineRunner{
 		List<Objetivo> objs3 = objetivoService.findAllObjetivos();
 //		objetivoService.deleteObjetivo(2);
 //		indicadorService.deleteIndicador(1);
+		
+
+
+		// Do some work & in the mean time the database has been updated by a batch job
+
+		// refresh object and now up to date
+
+		Objetivo oRev0 = objetivoService.findObjRevision(1, 1);
+		Objetivo oRev1 = objetivoService.findObjRevision(1, 4);
+		Objetivo oRev2 = objetivoService.findObjRevision(1, 7);
+		Objetivo oRev3 = objetivoService.findObjRevision(1, 8);
 		
 	}
 }

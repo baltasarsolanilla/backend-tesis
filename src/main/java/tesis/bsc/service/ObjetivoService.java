@@ -113,4 +113,10 @@ public class ObjetivoService {
 		this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
 	}
+	
+	//EntityManager
+	
+	public Objetivo findObjRevision(Integer id, Integer rev) {
+		return objetivoRepository.findObjRevision(id, rev);
+	}
 }
