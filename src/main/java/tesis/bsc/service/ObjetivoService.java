@@ -1,5 +1,7 @@
 package tesis.bsc.service;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -12,6 +14,7 @@ import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.repository.ObjetivoRepository;
+import tesis.bsc.responseBodyObject.ObjetivoHistory;
 
 @Service("ObjetivoService")
 @Transactional
@@ -114,9 +117,11 @@ public class ObjetivoService {
 		return objetivoRepository.save(o);
 	}
 	
-	//EntityManager
+	/*
+	 * Historico
+	 */
 	
-	public Objetivo findObjRevision(Integer id, Integer rev) {
-		return objetivoRepository.findObjRevision(id, rev);
+	public HashSet<ObjetivoHistory> getHistoricoObjetivo(Integer id, LocalDate fromDate, LocalDate toDate) {
+		return objetivoRepository.findAllObjetivoRevisionByIdAndDate(id, fromDate, toDate);
 	}
 }

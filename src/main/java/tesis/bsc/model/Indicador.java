@@ -43,12 +43,4 @@ public @Data class Indicador implements Serializable{
     public int hashCode() {
         return  Objects.hash(this.id);
     }
-    
-    /*
-     * Observable
-     */
-    
-    public void setValor(Float valor) {
-    	this.valor = valor;
-    }
 }

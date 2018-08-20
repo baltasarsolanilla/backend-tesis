@@ -1,6 +1,10 @@
 package tesis.bsc.repository.customRepositories;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,35 +17,97 @@ import org.hibernate.envers.query.AuditQuery;
 import org.springframework.transaction.annotation.Transactional;
 
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.responseBodyObject.ObjetivoHistory;
 
 public class ObjetivoRepositoryCustomImpl implements ObjetivoRepositoryCustom {
-
+		
+		private static final Integer CERO = 0;
+		private static final Integer UNO = 1;
+		
 		@PersistenceContext
 	    private EntityManager em;
 
-	    @Override
+		@Override
 	    @Transactional
-	    public Objetivo findObjRevision(Integer id, Integer rev) {
-	    	AuditReader reader = AuditReaderFactory.get(em);
-	   
-	    	//Inicio chanchada
-	    	Date fromDate = new Date();
-	    	Date toDate = new Date();
+	    public HashSet<ObjetivoHistory> findAllObjetivoRevisionByIdAndDate(Integer id, LocalDate fromDate, LocalDate toDate) {
+			
+			
+			Date fromDateInicio = Date.from(fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			Date fromDateFin = Date.from(toDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			
+			AuditReader reader = AuditReaderFactory.get(em);
+			
+			Number fromRev;
+			Number toRev;
+			try {
+	    		fromRev  = reader.getRevisionNumberForDate(fromDateInicio);
+	    	} catch (Exception e) {
+				fromRev = new Integer(CERO);
+			
+			}
+			
+			try {
+				toRev = reader.getRevisionNumberForDate(fromDateFin);
+	    	}catch (Exception e) {
+				toRev = new Integer(CERO);
+			
+			}
+			
+			
+	    	AuditQuery query = reader.createQuery().forRevisionsOfEntity(Objetivo.class, false, true)
+					.addProjection(AuditEntity.property("valor"))
+					.addProjection(AuditEntity.revisionProperty("timestamp"))
+	    			.add(AuditEntity.id().eq(id))
+	    			/*
+	    			 * La siguiente linea comentada esta porque:
+	    			 * Si la fecha fromDate es anterior al mínimo nro de revision, entonces tira un error.
+	    			 *  .add(AuditEntity.revisionNumber().between(reader.getRevisionNumberForDate(fromDate), reader.getRevisionNumberForDate(toDate)));
+	    			 *  .add(AuditEntity.revisionProperty("timestamp").between(date.getTime(), date2.getTime()))
+	    			 * Entonces se usa la siguiente.
+	    			 */
+	    			.add(AuditEntity.revisionNumber().between(fromRev, toRev))
+	    			
+	    			/*
+	    			 * La siguiente linea esta comentada porque:
+	    			 * Es otra solucionq que resuelve lo mismo pero menos clara, ya que el nro de revision siempre es creciente en el tiempo.
+	    			 * 	.addOrder(AuditEntity.revisionProperty("revisionNumber").asc());
+	    			 * Entonces se usa la siguiente.
+	    			 */
+	    			.addOrder(AuditEntity.revisionProperty("timestamp").desc())
+	    			;
+	    
 	    	
-	    	AuditQuery query = reader.createQuery().forRevisionsOfEntity(Objetivo.class, false, true);
-	    	query.add(AuditEntity.id().eq(id));
-	    	//query.add(AuditEntity.revisionNumber().between(reader.getRevisionNumberForDate(fromDate), reader.getRevisionNumberForDate(toDate)));
-	    	 
-	    	List<Objetivo> results = query.getResultList();
 	    	
 	    	
-	    	List<Number> results2 = reader.getRevisions(Objetivo.class, id);
+	    	List<Object[]> results = query.getResultList();
+	    	/*
+	    	 * Esta lista de objetos es de la forma: [0]
+	    	 * 											[0] - value = 50 (valor del objetivo)
+	    	 * 											[1] - value = 123123123123 (timestamp)
+	    	 * 										 [1]
+	    	 * 											...
+	    	 * Asi que recorro esa lista de objetos y lo convierto a algo más manejable: objetivoHistory
+	    	 * 
+	    	 * Utilizo HashSet con @Override de equals cuando los timestamp son del mismo dia. Ej. 20-Agosto-2018 == 20-Agosto-2018.
+	    	 * De esta forma guardo en objetivosHistoricos el último valor de cada día (el valor más cercano a las 23:59:59).
+	    	 */
+	    	HashSet<ObjetivoHistory> objetivosHistoricos = new HashSet<>();
+	    	results.forEach((obj) -> {
+	    		Float valor = (Float) obj[CERO];
+	    		Timestamp time = new Timestamp((long)obj[UNO]);
+	    		LocalDate localDate = time.toLocalDateTime().toLocalDate();
+	    		objetivosHistoricos.add(new ObjetivoHistory(valor, localDate));
+	    	});
 	    	
-	    	//Fin chanchada
+	    	return objetivosHistoricos;    	
+
+	    	/* PARA MEJORAR
+	    	 * 
+	    	 * ZoneId zoneId = ZoneId.systemDefault(); // or: ZoneId.of("Europe/Oslo");
+			long epochFromDate = fromDate.atStartOfDay(zoneId).toEpochSecond();
+			long epochToDate = toDate.atStartOfDay(zoneId).toEpochSecond();
+			*/
 	    	
-    	 	Date fechaRevision = reader.getRevisionDate(rev);
-	    	System.out.println("Fecha de revision " + rev  + " igual a: " + fechaRevision.toString());
-	    	return reader.find(Objetivo.class, id, rev);
-	    }
+		    }
 	    
 }

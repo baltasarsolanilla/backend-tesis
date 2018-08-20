@@ -1,8 +1,7 @@
 package tesis.bsc.rest;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +20,7 @@ import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.requestBodyObject.IndicadorPeso;
 import tesis.bsc.requestBodyObject.ObjetivoPeso;
+import tesis.bsc.responseBodyObject.ObjetivoHistory;
 import tesis.bsc.service.ObjetivoService;
 
 @RestController
@@ -119,12 +119,10 @@ public class ObjetivoRestController {
 	 *                                   =06-02-2013 to 08-02-2013
 	 */
 	@GetMapping("{idObjetivo}/historico")
-	public Collection<Objetivo> getHistorico(@PathVariable("idObjetivo") int id, 
-											 @RequestParam(value="fromDate") @DateTimeFormat(pattern="ddMMyyyy") Date fromDate,
-											 @RequestParam(value="toDate") @DateTimeFormat(pattern="ddMMyyyy") Date toDate){
+	public Collection<ObjetivoHistory> getHistorico(@PathVariable("idObjetivo") int id, 
+											 @RequestParam(value="fromDate") @DateTimeFormat(pattern="ddMMyyyy") LocalDate fromDate,
+											 @RequestParam(value="toDate") @DateTimeFormat(pattern="ddMMyyyy") LocalDate toDate){
 		System.out.println("From date " + fromDate.toString() + " to date " + toDate.toString());
-		Collection<Objetivo> historico = new ArrayList<>();
-		historico.add(objetivoService.getObjetivo(id));
-		return historico;
+		return objetivoService.getHistoricoObjetivo(id, fromDate, toDate);
 	}
 }
