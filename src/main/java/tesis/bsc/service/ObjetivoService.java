@@ -121,7 +121,7 @@ public class ObjetivoService {
 	 * Historico
 	 */
 	
-	public HashSet<ObjetivoHistory> getHistoricoObjetivo(Integer id, LocalDate fromDate, LocalDate toDate) {
+	public HashSet<ObjetivoHistory> getValoresHistoricosObjetivo(Integer id, LocalDate fromDate, LocalDate toDate) {
 		return objetivoRepository.findAllObjetivoRevisionByIdAndDate(id, fromDate, toDate);
 	}
 }

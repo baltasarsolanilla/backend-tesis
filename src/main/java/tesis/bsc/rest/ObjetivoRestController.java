@@ -115,14 +115,14 @@ public class ObjetivoRestController {
 	
 	/*
 	 * PATH: /objetivos/{idObjetivo}/historico
-	 * ej: objetivos/1/historico?fromDate=06022013&toDate=08022013
+	 * ej: objetivos/1/valoresHistoricos?fromDate=06022013&toDate=08022013
 	 *                                   =06-02-2013 to 08-02-2013
 	 */
-	@GetMapping("{idObjetivo}/historico")
+	@GetMapping("{idObjetivo}/valoresHistoricos")
 	public Collection<ObjetivoHistory> getHistorico(@PathVariable("idObjetivo") int id, 
 											 @RequestParam(value="fromDate") @DateTimeFormat(pattern="ddMMyyyy") LocalDate fromDate,
 											 @RequestParam(value="toDate") @DateTimeFormat(pattern="ddMMyyyy") LocalDate toDate){
 		System.out.println("From date " + fromDate.toString() + " to date " + toDate.toString());
-		return objetivoService.getHistoricoObjetivo(id, fromDate, toDate);
+		return objetivoService.getValoresHistoricosObjetivo(id, fromDate, toDate);
 	}
 }

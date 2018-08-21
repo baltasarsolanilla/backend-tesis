@@ -44,16 +44,16 @@ public class IndicadorRestController {
 	}
 	
 	/*
-	 * PATH: /indicadores/{idIndicador}
+	 * PATH: /indicadores/{idIndicador} 
 	 */
 	
-	//Update Indicador by ID
+	//Update Indicador by ID -- TEST PURPOSE ONLY
 	@PutMapping(path="/{idIndicador}")
 	public Indicador updateIndicador(@PathVariable("idIndicador") int id, @RequestBody Indicador indicador) {
 		return indicadorService.updateIndicador(id, indicador);
 	}
 	
-	//Delete Indicador by ID
+	//Delete Indicador by ID -- TEST PURPOSE ONLY
 	@DeleteMapping(path="/{idIndicador}")
 	public void deleteIndicador(@PathVariable("idIndicador") int id) {
 		indicadorService.deleteIndicador(id);
