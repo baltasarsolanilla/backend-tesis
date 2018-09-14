@@ -49,6 +49,8 @@ public class BscApplication implements CommandLineRunner{
 		 * 
 		 * Financiera
 		 * 		1) Ingresos (R-2,3)
+		 * 			i1_A) ...
+		 * 			i1_B) ...
 		 * 		2) Utilidades (R-4)
 		 * 		3) Capitalizacion (R-6)			
 		 * Clientes
