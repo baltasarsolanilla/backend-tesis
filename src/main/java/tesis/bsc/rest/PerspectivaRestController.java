@@ -81,7 +81,8 @@ public class PerspectivaRestController {
 	}
 	
 	//Delete Objetivo from objetivosAfectantes by ID
-	@DeleteMapping(path = "/{idPerspectiva}/objetivosAfectantes")
+	//Utiliza PUT ya que lo que realmente hace es modificar la lista de objetivosAfectantes y NO eliminar el recurso asociado a la URI
+	@PutMapping(path = "/{idPerspectiva}/objetivosAfectantes")
 	public Perspectiva deleteObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
 		return perspectivaService.deleteObjetivoAfectante(id, objetivo);
 	}

@@ -1,6 +1,5 @@
 package tesis.bsc;
 
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.Perspectiva;
-import tesis.bsc.repository.ObjetivoRepository;
 import tesis.bsc.service.EstrategiaService;
 import tesis.bsc.service.ObjetivoService;
 import tesis.bsc.service.PerspectivaService;

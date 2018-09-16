@@ -88,7 +88,8 @@ public class ObjetivoRestController {
 	}
 		
 	//Delete IndicadorAfectante from indicadoresAfectantes by ID
-	@DeleteMapping(path = "/{idObjetivo}/indicadoresAfectantes")
+	//Utiliza PUT ya que lo que realmente hace es modificar la lista de indicadoresAfectante y NO eliminar el recurso asociado a la URI
+	@PutMapping(path = "/{idObjetivo}/indicadoresAfectantes")
 	public Objetivo deleteIndicadorAfectante(@PathVariable("idObjetivo") int id, @RequestBody Indicador indicador) {
 		return objetivoService.deleteIndicadorAfectante(id, indicador);
 	}
@@ -110,7 +111,8 @@ public class ObjetivoRestController {
 	}
 	
 	//Delete ObjetivoAfectante to objetivosAfectantes by ID
-	@DeleteMapping("{idObjetivo}/objetivosAfectantes")
+	//Utiliza PUT ya que lo que realmente hace es modificar la lista de objetivosAfectante y NO eliminar el recurso asociado a la URI
+	@PutMapping("{idObjetivo}/objetivosAfectantes")
 	public Objetivo deleteObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody Objetivo objetivoAfectante) {
 		return objetivoService.deleteObjetivoAfectante(id, objetivoAfectante);
 	}

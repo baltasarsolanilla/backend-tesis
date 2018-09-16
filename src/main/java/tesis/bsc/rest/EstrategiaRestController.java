@@ -81,7 +81,8 @@ public class EstrategiaRestController {
 	}
 	
 	//Delete Perspectiva from perspectivasAfectantes by ID
-	@DeleteMapping(path = "/{idEstrategia}/perspectivasAfectantes")
+	//Utiliza PUT ya que lo que realmente hace es modificar la lista de perspectivasAfectante y NO eliminar el recurso asociado a la URI
+	@PutMapping(path = "/{idEstrategia}/perspectivasAfectantes")
 	public void deletePerspectivaAfectante(@PathVariable("idEstrategia") int id, @RequestBody Perspectiva perspectiva) {
 		estrategiaService.deletePerspectivaAfectante(id, perspectiva);
 	}
