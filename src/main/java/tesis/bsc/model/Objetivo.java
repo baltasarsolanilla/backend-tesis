@@ -79,14 +79,16 @@ public @Data class Objetivo implements Serializable{
 				iterator.remove();
 				ixo.setObjetivo(null);
 				ixo.setIndicador(null);
+				this.actualizar();
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public boolean addObjetivo(Objetivo objetivoAfectante, Float peso) {
-		ObjetivoXObjetivo oxo = new ObjetivoXObjetivo(this, objetivoAfectante, peso);
+	public boolean addObjetivo(Objetivo objetivoAfectante) {
+		ObjetivoXObjetivo oxo = new ObjetivoXObjetivo(this, objetivoAfectante);
+		this.actualizar();
 		return this.objetivosAfectantes.add(oxo);
 	}
 	
@@ -123,16 +125,11 @@ public @Data class Objetivo implements Serializable{
      */
     
     public void actualizar() {
-    	System.out.println("ActualizarValor: " + this.valor);
+    	System.out.println("Actualizar valor de objetivo: " + this.valor);
     	float nuevo_valor = 0.0f;
     	if (indicadoresAfectantes != null) {
     		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
     			nuevo_valor += ixo.getPeso() * ixo.getIndicador().getValor();
-    		}
-    	}
-    	if (objetivosAfectantes != null) {
-    		for (ObjetivoXObjetivo oxo : objetivosAfectantes) {
-    			nuevo_valor += oxo.getPeso() * oxo.getObjetivoAfectante().getValor();
     		}
     	}
     	this.setValor(nuevo_valor);

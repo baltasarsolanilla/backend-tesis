@@ -106,8 +106,8 @@ public class ObjetivoRestController {
 	
 	//Add ObjetivoAfectante to objetivosAfectantes by ID
 	@PostMapping("{idObjetivo}/objetivosAfectantes")
-	public Objetivo addObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody ObjetivoPeso objetivoPeso) {
-		return objetivoService.addObjetivoAfectante(id, objetivoPeso.getIdObjetivoAfectante(), objetivoPeso.getPeso());
+	public Objetivo addObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody ObjetivoPeso objetivoAfectante) {
+		return objetivoService.addObjetivoAfectante(id, objetivoAfectante.getIdObjetivoAfectante());
 	}
 	
 	//Delete ObjetivoAfectante to objetivosAfectantes by ID

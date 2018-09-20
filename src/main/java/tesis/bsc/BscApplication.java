@@ -143,17 +143,17 @@ public class BscApplication implements CommandLineRunner{
 		
 		//Relaciono los objetivos-objetivos
 		//Los objetivos 10 y 12 no tienen dependencias
-		objetivoService.addObjetivoAfectante(1,2, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(1,3, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(2,4, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(3,6, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(4,7, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(5,8, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(6,9, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(7,11, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(8,11, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(9,12, nroRandomUNO());
-		objetivoService.addObjetivoAfectante(11,12, nroRandomUNO());
+		objetivoService.addObjetivoAfectante(1,2);
+		objetivoService.addObjetivoAfectante(1,3);
+		objetivoService.addObjetivoAfectante(2,4);
+		objetivoService.addObjetivoAfectante(3,6);
+		objetivoService.addObjetivoAfectante(4,7);
+		objetivoService.addObjetivoAfectante(5,8);
+		objetivoService.addObjetivoAfectante(6,9);
+		objetivoService.addObjetivoAfectante(7,11);
+		objetivoService.addObjetivoAfectante(8,11);
+		objetivoService.addObjetivoAfectante(9,12);
+		objetivoService.addObjetivoAfectante(11,12);
 		
 		
 		//Relaciono los indicadores-objetivos

@@ -51,13 +51,15 @@ public class ObjetivoService {
 	 */
 	public void actualizarObjetivo(Objetivo o) {
 		o.actualizar();
-		this.actualizarObjetivosQueAfecto(o);
+		//No existe más el peso -> no se actualiza objetivosQueAfecto
+		//this.actualizarObjetivosQueAfecto(o);
 	}
 	
 	/**
 	 * Este método actualiza todos los objetivos que afecta el objetivo "o".
 	 * @param o
 	 */
+	//DEPRECATED
 	public void actualizarObjetivosQueAfecto(Objetivo o) {
 		List<Objetivo> objetivosQueAfecto = objetivoRepository.findAllObjetivosQueAfectoById(o.getId());
 		for (Objetivo obj : objetivosQueAfecto) {
@@ -65,6 +67,7 @@ public class ObjetivoService {
 		}
 	}
 	
+	//DEPRECATED
 	public void deleteObjetivo(Integer id) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		this.actualizarObjetivosQueAfecto(o);
@@ -102,18 +105,18 @@ public class ObjetivoService {
 		return objetivoRepository.findById(id).orElse(null).getObjetivosAfectantes(); 
 	}
 	
-	public Objetivo addObjetivoAfectante(Integer id, Integer idObjetivoAfectante, Float peso) {
+	public Objetivo addObjetivoAfectante(Integer id, Integer idObjetivoAfectante) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		Objetivo objetivoAfectante = objetivoRepository.findById(idObjetivoAfectante).orElse(null);
-		o.addObjetivo(objetivoAfectante, peso);
-		this.actualizarObjetivo(o);
+		o.addObjetivo(objetivoAfectante);
+		//this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
 	}
 	
 	public Objetivo deleteObjetivoAfectante(Integer id, Objetivo objetivoAfectante) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeObjetivo(objetivoAfectante);
-		this.actualizarObjetivo(o);
+		//this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
 	}
 	

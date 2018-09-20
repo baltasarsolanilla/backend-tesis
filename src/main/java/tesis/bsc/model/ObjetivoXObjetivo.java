@@ -35,16 +35,14 @@ public @Data class ObjetivoXObjetivo implements Serializable{
 	@MapsId("objetivoAfectanteId")
 	private Objetivo objetivoAfectante;
 	
-	private Float peso;
 	
 	
 	public ObjetivoXObjetivo() { //JPA ONLY
 	}
 	
-	public ObjetivoXObjetivo(Objetivo objetivo, Objetivo objetivoAfectante, Float peso) {
+	public ObjetivoXObjetivo(Objetivo objetivo, Objetivo objetivoAfectante) {
 		this.objetivo = objetivo;
 		this.objetivoAfectante = objetivoAfectante;
-		this.peso = peso;
 		this.id = new ObjetivoXObjetivoId(objetivo.getId(), objetivoAfectante.getId());
 	}
 	
