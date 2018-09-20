@@ -20,7 +20,6 @@ import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.requestBodyObject.IndicadorPeso;
-import tesis.bsc.requestBodyObject.ObjetivoPeso;
 import tesis.bsc.responseBodyObject.ObjetivoHistory;
 import tesis.bsc.service.ObjetivoService;
 
@@ -106,8 +105,8 @@ public class ObjetivoRestController {
 	
 	//Add ObjetivoAfectante to objetivosAfectantes by ID
 	@PostMapping("{idObjetivo}/objetivosAfectantes")
-	public Objetivo addObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody ObjetivoPeso objetivoAfectante) {
-		return objetivoService.addObjetivoAfectante(id, objetivoAfectante.getIdObjetivoAfectante());
+	public Objetivo addObjetivoAfectante(@PathVariable("idObjetivo") int id, @RequestBody Objetivo objetivoAfectante) {
+		return objetivoService.addObjetivoAfectante(id, objetivoAfectante.getId());
 	}
 	
 	//Delete ObjetivoAfectante to objetivosAfectantes by ID
