@@ -125,14 +125,18 @@ public @Data class Objetivo implements Serializable{
      */
     
     public void actualizar() {
-    	System.out.println("Actualizar valor de objetivo: " + this.valor);
-    	float nuevo_valor = 0.0f;
     	if (indicadoresAfectantes != null) {
+        	System.out.println("Actualizar valor de objetivo: " + this.valor);
+        	float nuevo_valor = 0.0f;
+        	float peso_acumulado = 0.0f; //Lo float por razones de conversiones, pero es un valor entero.
     		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
-    			nuevo_valor += ixo.getPeso() * ixo.getIndicador().getValor();
+    			peso_acumulado += ixo.getPeso();
     		}
+    		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
+    			nuevo_valor += (ixo.getPeso() / peso_acumulado) * ixo.getIndicador().getValor();
+    		}
+    		this.setValor(nuevo_valor);
     	}
-    	this.setValor(nuevo_valor);
     }
 }
 

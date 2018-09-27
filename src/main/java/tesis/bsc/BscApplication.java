@@ -1,6 +1,7 @@
 package tesis.bsc;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -260,6 +261,20 @@ public class BscApplication implements CommandLineRunner{
 	
 	
 	public static Float nroRandomUNO() {
-		return new Random().nextFloat();
+		int min = 1;
+		int max = 5;
+		int val = ThreadLocalRandom.current().nextInt(min, max + 1);
+		if (val == 1)
+			return 1.0f;
+		if (val == 2)
+			return 2.0f;
+		if (val == 3)
+			return 3.0f;
+		if (val == 4)
+			return 4.0f;
+		if (val == 5)
+			return 5.0f;
+		return 100.0f;
+//		return new Random().nextFloat(); no se como sacarle los ultimos dos digitos.
 	}
 }
