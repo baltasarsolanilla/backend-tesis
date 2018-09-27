@@ -181,20 +181,83 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addIndicadorAfectante(11, 22, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(12, 23, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(12, 24, nroRandomUNO());
-
-		// Do some work & in the mean time the database has been updated by a batch job
-
-		// refresh object and now up to date
-
-//		Objetivo oRev0 = objetivoService.findObjRevision(1, 1);
-//		Objetivo oRev1 = objetivoService.findObjRevision(1, 4);
-//		Objetivo oRev2 = objetivoService.findObjRevision(1, 7);
-//		Objetivo oRev3 = objetivoService.findObjRevision(1, 8);
+		
+		//////////////////////////////////////////////////////////////////////////
+		//Segunda estrategia para realizar otras pruebas:
+		////////////////////////////////////////////////////////////////////////
+		
+		String mision2="Build files for all directives are distributed in several flavours: minified for production usage, un-minifi.";
+		String vision2="All the options are described and can be downloaded from here. It should be noted that the.";
+		estrategiaService.addEstrategia(new Estrategia("Laboratorio XXX", mision2, vision2));
+		
+		//Creo perspectivas
+		perspectivaService.addPerspectiva(new Perspectiva("5 Financiera", "Descripcion financiera 2..."));		
+		perspectivaService.addPerspectiva(new Perspectiva("6 Clientes", "Descripcion clientes 2..."));
+		perspectivaService.addPerspectiva(new Perspectiva("7 Procesos internos", "Descripcion procesos internos 2..."));
+		perspectivaService.addPerspectiva(new Perspectiva("8 Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento 2..."));
+		
+		//Creo objetivos
+		objetivoService.addObjetivo(new Objetivo("13 Ingresos","Descripcion ingresos..."));
+		objetivoService.addObjetivo(new Objetivo("16 Posicionamiento en el mercado","Descripcion Posicionamiento en el mercado..."));
+		objetivoService.addObjetivo(new Objetivo("17 Incrementar no. clientes","Descripcion incrementar no. clientes..."));
+		objetivoService.addObjetivo(new Objetivo("18 Fidelizacion de clientes","Descripcion fidelizacion de clientes..."));
+		objetivoService.addObjetivo(new Objetivo("19 Optimizar procesos","Descripcion optimizar procesos..."));
+		objetivoService.addObjetivo(new Objetivo("20 Documentar nuevos desarrollow","Descripcion documentar nuevos desarrollow..."));
+		objetivoService.addObjetivo(new Objetivo("21 Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
+		
+		//Relaciono las perspectivas-estrategias
+		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(5));
+		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(6));
+		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(7));
+		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(8));
+		
+		//Relaciono los objetivos-perspectivas
+		perspectivaService.addObjetivoAfectante(5, objetivoService.getObjetivo(13));
+		perspectivaService.addObjetivoAfectante(6, objetivoService.getObjetivo(14));
+		perspectivaService.addObjetivoAfectante(6, objetivoService.getObjetivo(15));
+		perspectivaService.addObjetivoAfectante(7, objetivoService.getObjetivo(16));
+		perspectivaService.addObjetivoAfectante(7, objetivoService.getObjetivo(17));
+		perspectivaService.addObjetivoAfectante(8, objetivoService.getObjetivo(18));
+		perspectivaService.addObjetivoAfectante(8, objetivoService.getObjetivo(19));
+		
+		//Relaciono los objetivos-objetivos
+		//Los objetivos 10 y 12 no tienen dependencias
+		objetivoService.addObjetivoAfectante(13,14);
+		objetivoService.addObjetivoAfectante(13,15);
+		objetivoService.addObjetivoAfectante(14,16);
+		objetivoService.addObjetivoAfectante(15,17);
+		objetivoService.addObjetivoAfectante(16,18);
+		objetivoService.addObjetivoAfectante(17,19);
+		
+		//Relaciono los indicadores-objetivos (3 cada uno)
+		objetivoService.addIndicadorAfectante(13, 1, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(13, 2, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(13, 3, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(14, 4, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(14, 5, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(14, 6, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(15, 7, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(15, 8, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(15, 9, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(16, 10, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(16, 11, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(16, 12, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(17, 13, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(17, 14, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(17, 15, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(18, 16, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(18, 17, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(18, 18, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(19, 19, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(19, 20, nroRandomUNO());
+		objetivoService.addIndicadorAfectante(19, 21, nroRandomUNO());
+		
 	}
 	
 	public static Float nroRandomDIEZ() {
 		return new Random().nextFloat()*10;
 	}
+	
 	
 	public static Float nroRandomUNO() {
 		return new Random().nextFloat();
