@@ -1,5 +1,7 @@
 package tesis.bsc.service;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -9,8 +11,10 @@ import org.springframework.stereotype.Service;
 import tesis.bsc.model.Indicador;
 import tesis.bsc.model.IndicadorXObjetivo;
 import tesis.bsc.model.Objetivo;
+import tesis.bsc.model.ObjetivoXObjetivo;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.repository.ObjetivoRepository;
+import tesis.bsc.responseBodyObject.ObjetivoHistory;
 
 @Service("ObjetivoService")
 @Transactional
@@ -41,8 +45,32 @@ public class ObjetivoService {
 		return objetivoRepository.save(o);
 	}
 	
+	/**
+	 * Este método actualiza el objetivo "o" y propaga la actualizacion.
+	 * @param o
+	 */
+	public void actualizarObjetivo(Objetivo o) {
+		o.actualizar();
+		//No existe más el peso -> no se actualiza objetivosQueAfecto
+		//this.actualizarObjetivosQueAfecto(o);
+	}
+	
+	/**
+	 * Este método actualiza todos los objetivos que afecta el objetivo "o".
+	 * @param o
+	 */
+	//DEPRECATED
+	public void actualizarObjetivosQueAfecto(Objetivo o) {
+		List<Objetivo> objetivosQueAfecto = objetivoRepository.findAllObjetivosQueAfectoById(o.getId());
+		for (Objetivo obj : objetivosQueAfecto) {
+			this.actualizarObjetivo(obj);
+		}
+	}
+	
+	//DEPRECATED
 	public void deleteObjetivo(Integer id) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		this.actualizarObjetivosQueAfecto(o);
 		objetivoRepository.delete(o);
 	}
 	
@@ -58,12 +86,45 @@ public class ObjetivoService {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		Indicador i = indicadorRepository.findById(indicadorId).orElse(null);
 		o.addIndicador(i, peso);
-		return objetivoRepository.save(o);
+		this.actualizarObjetivo(o);
+		return o;
 	}
 	
 	public Objetivo deleteIndicadorAfectante(Integer id, Indicador i) {
 		Objetivo o = objetivoRepository.findById(id).orElse(null);
 		o.removeIndicador(i);
+		this.actualizarObjetivo(o);
+		return o;
+	}
+	
+	/*
+	 * ObjetivosAfectantes
+	 */
+	
+	public List<ObjetivoXObjetivo> getObjetivosAfectantes(Integer id){
+		return objetivoRepository.findById(id).orElse(null).getObjetivosAfectantes(); 
+	}
+	
+	public Objetivo addObjetivoAfectante(Integer id, Integer idObjetivoAfectante) {
+		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		Objetivo objetivoAfectante = objetivoRepository.findById(idObjetivoAfectante).orElse(null);
+		o.addObjetivo(objetivoAfectante);
+		//this.actualizarObjetivo(o);
 		return objetivoRepository.save(o);
+	}
+	
+	public Objetivo deleteObjetivoAfectante(Integer id, Objetivo objetivoAfectante) {
+		Objetivo o = objetivoRepository.findById(id).orElse(null);
+		o.removeObjetivo(objetivoAfectante);
+		//this.actualizarObjetivo(o);
+		return objetivoRepository.save(o);
+	}
+	
+	/*
+	 * Historico
+	 */
+	
+	public HashSet<ObjetivoHistory> getValoresHistoricosObjetivo(Integer id, LocalDate fromDate, LocalDate toDate) {
+		return objetivoRepository.findAllObjetivoRevisionByIdAndDate(id, fromDate, toDate);
 	}
 }

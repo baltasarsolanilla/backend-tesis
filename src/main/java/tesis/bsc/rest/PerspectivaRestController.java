@@ -3,6 +3,7 @@ package tesis.bsc.rest;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import tesis.bsc.model.Objetivo;
 import tesis.bsc.model.Perspectiva;
 import tesis.bsc.service.PerspectivaService;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("perspectivas")
 public class PerspectivaRestController {
@@ -79,7 +81,8 @@ public class PerspectivaRestController {
 	}
 	
 	//Delete Objetivo from objetivosAfectantes by ID
-	@DeleteMapping(path = "/{idPerspectiva}/objetivosAfectantes")
+	//Utiliza PUT ya que lo que realmente hace es modificar la lista de objetivosAfectantes y NO eliminar el recurso asociado a la URI
+	@PutMapping(path = "/{idPerspectiva}/objetivosAfectantes")
 	public Perspectiva deleteObjetivosAfectantes(@PathVariable("idPerspectiva") int id, @RequestBody Objetivo objetivo) {
 		return perspectivaService.deleteObjetivoAfectante(id, objetivo);
 	}
