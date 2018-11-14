@@ -37,6 +37,8 @@ public @Data class Objetivo implements Serializable{
 	@Audited(withModifiedFlag=true)
 	private Float valor;
 	
+	private Enum<Tendencia> tendencia;
+	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "objetivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IndicadorXObjetivo> indicadoresAfectantes;
@@ -55,6 +57,7 @@ public @Data class Objetivo implements Serializable{
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.valor = CERO;
+		this.tendencia = Tendencia.MEDIA;
 	}
     
 	public Objetivo cloneObjetivo() {
@@ -127,8 +130,9 @@ public @Data class Objetivo implements Serializable{
     public void actualizar() {
     	if (indicadoresAfectantes != null) {
         	System.out.println("Actualizar valor de objetivo: " + this.valor);
+        	float viejo_valor = this.valor;
         	float nuevo_valor = 0.0f;
-        	float peso_acumulado = 0.0f; //Lo float por razones de conversiones, pero es un valor entero.
+        	float peso_acumulado = 0.0f; //Es float por razones de conversiones, pero es un valor entero.
     		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
     			peso_acumulado += ixo.getPeso();
     		}
@@ -136,7 +140,22 @@ public @Data class Objetivo implements Serializable{
     			nuevo_valor += (ixo.getPeso() / peso_acumulado) * ixo.getIndicador().getValor();
     		}
     		this.setValor(nuevo_valor);
+    		
+    		this.tendencia = actualizarTendencia(viejo_valor, nuevo_valor);
     	}
+    }
+    
+        
+    private Enum<Tendencia> actualizarTendencia(float viejo_valor, float nuevo_valor) {
+    	if (nuevo_valor - viejo_valor > 1) return Tendencia.ALTA;
+    	if (nuevo_valor - viejo_valor < 1) return Tendencia.BAJA;
+    	return Tendencia.MEDIA;
+	}
+
+	public enum Tendencia {
+    	ALTA,
+    	MEDIA,
+    	BAJA
     }
 }
 
