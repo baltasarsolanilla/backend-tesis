@@ -1,5 +1,5 @@
 package tesis.bsc;
-//esta linea no va
+
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
