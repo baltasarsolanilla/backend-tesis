@@ -22,8 +22,8 @@ public @Data class Estrategia {
 	private Integer id;
 		
 	private String nombre;
-	private String mision;
-	private String vision;
+	private String descripcion;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "estrategia_id")
@@ -33,11 +33,10 @@ public @Data class Estrategia {
 	public Estrategia() { //JPA ONLY
 	}
 	
-	public Estrategia(String nombre, String mision, String vision) {
+	public Estrategia(String nombre, String descripcion) {
 		this.perspectivasAfectantes = new ArrayList<>();
 		this.nombre = nombre;
-		this.mision = mision;
-		this.vision = vision;
+		this.descripcion = descripcion;
 	}
 	
 	public void addPerspectiva(Perspectiva p) {
@@ -52,8 +51,7 @@ public @Data class Estrategia {
 		Estrategia e_clone = new Estrategia();
 		e_clone.setId(this.getId());
 		e_clone.setNombre(this.getNombre());
-		e_clone.setMision(this.getMision());
-		e_clone.setVision(this.getVision());
+		e_clone.setDescripcion(this.getDescripcion());
 		return e_clone;
 	}
 }

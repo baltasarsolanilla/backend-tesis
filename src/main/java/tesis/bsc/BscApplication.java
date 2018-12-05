@@ -71,9 +71,9 @@ public class BscApplication implements CommandLineRunner{
 		 */
 	
 		//Creo estrategia
-		String mision="Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.";
-		String vision="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
-		estrategiaService.addEstrategia(new Estrategia("Technisys RQT", mision, vision));
+		String descripcion="Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.";
+		//String vision="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
+		estrategiaService.addEstrategia(new Estrategia("Technisys RQT", descripcion));
 		
 		//Creo perspectivas
 		perspectivaService.addPerspectiva(new Perspectiva("1 Financiera", "Descripcion financiera..."));		
@@ -96,16 +96,16 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addObjetivo(new Objetivo("12 Bienestar","Descripcion bienestar..."));		
 		
 		//Creo indicadores
-		indicadorService.addIndicador(new Indicador("1 i1-A", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("2 i1-B", nroRandomDIEZ()));
+		indicadorService.addIndicador(new Indicador("1 i1-A", 1.0f));
+		indicadorService.addIndicador(new Indicador("2 i1-B", 2.0f));
 		indicadorService.addIndicador(new Indicador("3 i2-A", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("4 i2-B", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("5 i3-A", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("6 i3-B", nroRandomDIEZ()));
+		indicadorService.addIndicador(new Indicador("5 i3-A", 8.5f));
+		indicadorService.addIndicador(new Indicador("6 i3-B", 9.2f));
 		indicadorService.addIndicador(new Indicador("7 i4-A", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("8 i4-B", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("9 i5-A", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("10 i5-B", nroRandomDIEZ()));
+		indicadorService.addIndicador(new Indicador("9 i5-A", 5.0f));
+		indicadorService.addIndicador(new Indicador("10 i5-B", 5.1f));
 		indicadorService.addIndicador(new Indicador("11 i6-A", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("12 i6-B", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("13 i7-A", nroRandomDIEZ()));
@@ -187,9 +187,9 @@ public class BscApplication implements CommandLineRunner{
 		//Segunda estrategia para realizar otras pruebas:
 		////////////////////////////////////////////////////////////////////////
 		
-		String mision2="Build files for all directives are distributed in several flavours: minified for production usage, un-minifi.";
-		String vision2="All the options are described and can be downloaded from here. It should be noted that the.";
-		estrategiaService.addEstrategia(new Estrategia("Laboratorio XXX", mision2, vision2));
+		String descripcion2="Build files for all directives are distributed in several flavours: minified for production usage, un-minifi.";
+		//String vision2="All the options are described and can be downloaded from here. It should be noted that the.";
+		estrategiaService.addEstrategia(new Estrategia("Laboratorio XXX", descripcion2));
 		
 		//Creo perspectivas
 		perspectivaService.addPerspectiva(new Perspectiva("5 Financiera", "Descripcion financiera 2..."));		
@@ -253,6 +253,125 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addIndicadorAfectante(19, 20, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(19, 21, nroRandomUNO());
 		
+		//////////////////////////////////////////////////////////////////////////
+		//Tercer estrategia para realizar otras pruebas:
+		////////////////////////////////////////////////////////////////////////
+				
+		//Creo estrategia
+				String descripcion3="Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.";
+				//String vision3="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
+				estrategiaService.addEstrategia(new Estrategia("Tesis Application", descripcion3));
+				
+				//Creo perspectivas
+				perspectivaService.addPerspectiva(new Perspectiva("Financiera", "Descripcion financiera..."));		
+				perspectivaService.addPerspectiva(new Perspectiva("Clientes", "Descripcion clientes..."));
+				perspectivaService.addPerspectiva(new Perspectiva("Procesos internos", "Descripcion procesos internos..."));
+				perspectivaService.addPerspectiva(new Perspectiva("Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento..."));
+				
+				//Creo objetivos
+				objetivoService.addObjetivo(new Objetivo("Utilidades","Descripcion utilidades..."));
+				objetivoService.addObjetivo(new Objetivo("Ingresos","Descripcion ingresos..."));
+				objetivoService.addObjetivo(new Objetivo("Capitalizacion","Descripcion capitalizacion..."));
+				objetivoService.addObjetivo(new Objetivo("Posicionamiento en el mercado","Descripcion Posicionamiento en el mercado..."));
+				objetivoService.addObjetivo(new Objetivo("Incrementar no. clientes","Descripcion incrementar no. clientes..."));
+				objetivoService.addObjetivo(new Objetivo("Fidelizacion de clientes","Descripcion fidelizacion de clientes..."));
+				objetivoService.addObjetivo(new Objetivo("Optimizar procesos","Descripcion optimizar procesos..."));
+				objetivoService.addObjetivo(new Objetivo("Documentar nuevos desarrollos","Descripcion documentar nuevos desarrollow..."));
+				objetivoService.addObjetivo(new Objetivo("Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
+				objetivoService.addObjetivo(new Objetivo("Crecimiento profesional","Descripcion crecimiento profesional..."));
+				objetivoService.addObjetivo(new Objetivo("Traspaso funciones internas","Descripcion traspaso funciones internas..."));
+				objetivoService.addObjetivo(new Objetivo("Bienestar","Descripcion bienestar..."));		
+				
+				//Creo indicadores
+				indicadorService.addIndicador(new Indicador("1 i1-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("2 i1-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("3 i2-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("4 i2-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("5 i3-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("6 i3-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("7 i4-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("8 i4-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("9 i5-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("10 i5-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("11 i6-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("12 i6-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("13 i7-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("14 i7-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("15 i8-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("16 i8-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("17 i9-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("18 i9-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("19 i10-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("20 i10-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("21 i11-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("22 i11-B", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("23 i12-A", nroRandomDIEZ()));
+				indicadorService.addIndicador(new Indicador("24 i12-B", nroRandomDIEZ()));
+				
+				//Relaciono las perspectivas-estrategias
+				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(9));
+				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(10));
+				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(11));
+				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(12));
+				
+				//Relaciono los objetivos-perspectivas
+				perspectivaService.addObjetivoAfectante(9, objetivoService.getObjetivo(20));
+				perspectivaService.addObjetivoAfectante(9, objetivoService.getObjetivo(21));
+				perspectivaService.addObjetivoAfectante(9, objetivoService.getObjetivo(22));
+				perspectivaService.addObjetivoAfectante(10, objetivoService.getObjetivo(23));
+				perspectivaService.addObjetivoAfectante(10, objetivoService.getObjetivo(24));
+				perspectivaService.addObjetivoAfectante(10, objetivoService.getObjetivo(25));
+				perspectivaService.addObjetivoAfectante(11, objetivoService.getObjetivo(26));
+				perspectivaService.addObjetivoAfectante(11, objetivoService.getObjetivo(27));
+				perspectivaService.addObjetivoAfectante(11, objetivoService.getObjetivo(28));
+				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(29));
+				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(30));
+				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(31));
+				
+				
+				//Relaciono los objetivos-objetivos
+				//Los objetivos 10 y 12 no tienen dependencias
+				objetivoService.addObjetivoAfectante(20,23);
+				objetivoService.addObjetivoAfectante(21,20);
+				objetivoService.addObjetivoAfectante(21,22);
+				objetivoService.addObjetivoAfectante(21,24);
+				objetivoService.addObjetivoAfectante(22,25);
+				objetivoService.addObjetivoAfectante(23,26);
+				objetivoService.addObjetivoAfectante(24,27);
+				objetivoService.addObjetivoAfectante(25,28);
+				objetivoService.addObjetivoAfectante(26,30);
+				objetivoService.addObjetivoAfectante(27,30);
+				objetivoService.addObjetivoAfectante(27,29);
+				objetivoService.addObjetivoAfectante(28,31);
+				objetivoService.addObjetivoAfectante(30,31);
+				
+				
+//				//Relaciono los indicadores-objetivos
+				objetivoService.addIndicadorAfectante(20, 1, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(20, 2, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(21, 3, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(21, 4, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(22, 5, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(22, 6, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(23, 7, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(23, 8, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(24, 9, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(24, 10, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(25, 11, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(25, 12, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(26, 13, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(26, 14, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(27, 15, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(27, 16, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(28, 17, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(28, 18, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(29, 19, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(29, 20, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(30, 21, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(30, 22, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(31, 23, nroRandomUNO());
+				objetivoService.addIndicadorAfectante(31, 24, nroRandomUNO());
+				
 	}
 	
 	public static Float nroRandomDIEZ() {
