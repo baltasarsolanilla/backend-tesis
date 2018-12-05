@@ -30,8 +30,7 @@ public class EstrategiaService {
 	public Estrategia updateEstrategia(Integer id, Estrategia estrategia) {
 		Estrategia e = estrategiaRepository.findById(id).orElse(null);
 		e.setNombre(estrategia.getNombre());
-		e.setMision(estrategia.getMision());
-		e.setVision(estrategia.getVision());
+		e.setDescripcion(estrategia.getDescripcion());
 		return estrategiaRepository.save(e);
 	}
 	

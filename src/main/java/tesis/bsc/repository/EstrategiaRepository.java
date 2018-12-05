@@ -11,5 +11,5 @@ import tesis.bsc.model.Estrategia;
 public interface EstrategiaRepository extends JpaRepository<Estrategia, Integer> {
 	
 	List<Estrategia> findByNombre(@Param("nombre") String nombre);
-	List<Estrategia> findByNombreAndMision(@Param("nombre") String nombre, @Param("vision") String vision);
+	List<Estrategia> findByNombreAndDescripcion(@Param("nombre") String nombre, @Param("descripcion") String descripcion);
 }
