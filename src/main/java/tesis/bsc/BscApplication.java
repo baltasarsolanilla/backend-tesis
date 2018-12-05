@@ -1,5 +1,5 @@
 package tesis.bsc;
-
+//esta linea no va
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,19 +19,19 @@ import tesis.bsc.service.IndicadorService;
 
 @SpringBootApplication
 public class BscApplication implements CommandLineRunner{
-	
+
 	@Autowired
 	EstrategiaService estrategiaService;
-	
+
 	@Autowired
 	PerspectivaService perspectivaService;
-	
+
 	@Autowired
 	ObjetivoService objetivoService;
-	
+
 	@Autowired
 	IndicadorService indicadorService;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(BscApplication.class, args);
 	}
@@ -39,19 +39,19 @@ public class BscApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		//Base con el siguiente formato:
 		/*
 		 * Technisys RQT
-		 * Mision: Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros. 
-		 * Vision: Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global. 
-		 * 
+		 * Mision: Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.
+		 * Vision: Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.
+		 *
 		 * Financiera
 		 * 		1) Ingresos (R-2,3)
 		 * 			i1_A) ...
 		 * 			i1_B) ...
 		 * 		2) Utilidades (R-4)
-		 * 		3) Capitalizacion (R-6)			
+		 * 		3) Capitalizacion (R-6)
 		 * Clientes
 		 * 		4) Posicionamiento en el mercado (R-7)
 		 * 		5) Incrementar no. clientes (R-8)
@@ -61,26 +61,26 @@ public class BscApplication implements CommandLineRunner{
 		 * 		8) Documentar nuevos desarrollos (R-11)
 		 * 		9) Investigar nuevas tecnologías (R-12)
 		 * Aprendizaje y crecimiento
-		 * 		10) Crecimiento profesional 
+		 * 		10) Crecimiento profesional
 		 * 		11) Traspaso funciones internas (R-10)
 		 * 		12) Bienestar
-		 * 
+		 *
 		 * NOTA: todos tienen exactamente 2 indicadores. Que van de la forma:
 		 * Si el objetivo es 3) entonces los indicadores son i3-A y i3-B,
 		 * el nro es random entre 0-10.
 		 */
-	
+
 		//Creo estrategia
 		String descripcion="Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.";
 		//String vision="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
 		estrategiaService.addEstrategia(new Estrategia("Technisys RQT", descripcion));
-		
+
 		//Creo perspectivas
-		perspectivaService.addPerspectiva(new Perspectiva("1 Financiera", "Descripcion financiera..."));		
+		perspectivaService.addPerspectiva(new Perspectiva("1 Financiera", "Descripcion financiera..."));
 		perspectivaService.addPerspectiva(new Perspectiva("2 Clientes", "Descripcion clientes..."));
 		perspectivaService.addPerspectiva(new Perspectiva("3 Procesos internos", "Descripcion procesos internos..."));
 		perspectivaService.addPerspectiva(new Perspectiva("4 Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento..."));
-		
+
 		//Creo objetivos
 		objetivoService.addObjetivo(new Objetivo("1 Ingresos","Descripcion ingresos..."));
 		objetivoService.addObjetivo(new Objetivo("2 Utilidades","Descripcion utilidades..."));
@@ -93,8 +93,8 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addObjetivo(new Objetivo("9 Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
 		objetivoService.addObjetivo(new Objetivo("10 Crecimiento profesional","Descripcion crecimiento profesional..."));
 		objetivoService.addObjetivo(new Objetivo("11 Traspaso funciones internas","Descripcion traspaso funciones internas..."));
-		objetivoService.addObjetivo(new Objetivo("12 Bienestar","Descripcion bienestar..."));		
-		
+		objetivoService.addObjetivo(new Objetivo("12 Bienestar","Descripcion bienestar..."));
+
 		//Creo indicadores
 		indicadorService.addIndicador(new Indicador("1 i1-A", 1.0f));
 		indicadorService.addIndicador(new Indicador("2 i1-B", 2.0f));
@@ -120,13 +120,13 @@ public class BscApplication implements CommandLineRunner{
 		indicadorService.addIndicador(new Indicador("22 i11-B", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("23 i12-A", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("24 i12-B", nroRandomDIEZ()));
-		
+
 		//Relaciono las perspectivas-estrategias
 		estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(1));
 		estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(2));
 		estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(3));
 		estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(4));
-		
+
 		//Relaciono los objetivos-perspectivas
 		perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(1));
 		perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(2));
@@ -140,8 +140,8 @@ public class BscApplication implements CommandLineRunner{
 		perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(10));
 		perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(11));
 		perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(12));
-		
-		
+
+
 		//Relaciono los objetivos-objetivos
 		//Los objetivos 10 y 12 no tienen dependencias
 		objetivoService.addObjetivoAfectante(1,2);
@@ -155,8 +155,8 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addObjetivoAfectante(8,11);
 		objetivoService.addObjetivoAfectante(9,12);
 		objetivoService.addObjetivoAfectante(11,12);
-		
-		
+
+
 		//Relaciono los indicadores-objetivos
 		objetivoService.addIndicadorAfectante(1, 1, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(1, 2, nroRandomUNO());
@@ -182,21 +182,21 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addIndicadorAfectante(11, 22, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(12, 23, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(12, 24, nroRandomUNO());
-		
+
 		//////////////////////////////////////////////////////////////////////////
 		//Segunda estrategia para realizar otras pruebas:
 		////////////////////////////////////////////////////////////////////////
-		
+
 		String descripcion2="Build files for all directives are distributed in several flavours: minified for production usage, un-minifi.";
 		//String vision2="All the options are described and can be downloaded from here. It should be noted that the.";
 		estrategiaService.addEstrategia(new Estrategia("Laboratorio XXX", descripcion2));
-		
+
 		//Creo perspectivas
-		perspectivaService.addPerspectiva(new Perspectiva("5 Financiera", "Descripcion financiera 2..."));		
+		perspectivaService.addPerspectiva(new Perspectiva("5 Financiera", "Descripcion financiera 2..."));
 		perspectivaService.addPerspectiva(new Perspectiva("6 Clientes", "Descripcion clientes 2..."));
 		perspectivaService.addPerspectiva(new Perspectiva("7 Procesos internos", "Descripcion procesos internos 2..."));
 		perspectivaService.addPerspectiva(new Perspectiva("8 Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento 2..."));
-		
+
 		//Creo objetivos
 		objetivoService.addObjetivo(new Objetivo("13 Ingresos","Descripcion ingresos..."));
 		objetivoService.addObjetivo(new Objetivo("16 Posicionamiento en el mercado","Descripcion Posicionamiento en el mercado..."));
@@ -205,13 +205,13 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addObjetivo(new Objetivo("19 Optimizar procesos","Descripcion optimizar procesos..."));
 		objetivoService.addObjetivo(new Objetivo("20 Documentar nuevos desarrollow","Descripcion documentar nuevos desarrollow..."));
 		objetivoService.addObjetivo(new Objetivo("21 Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
-		
+
 		//Relaciono las perspectivas-estrategias
 		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(5));
 		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(6));
 		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(7));
 		estrategiaService.addPerspectivaAfectante(2, perspectivaService.getPerspectiva(8));
-		
+
 		//Relaciono los objetivos-perspectivas
 		perspectivaService.addObjetivoAfectante(5, objetivoService.getObjetivo(13));
 		perspectivaService.addObjetivoAfectante(6, objetivoService.getObjetivo(14));
@@ -220,7 +220,7 @@ public class BscApplication implements CommandLineRunner{
 		perspectivaService.addObjetivoAfectante(7, objetivoService.getObjetivo(17));
 		perspectivaService.addObjetivoAfectante(8, objetivoService.getObjetivo(18));
 		perspectivaService.addObjetivoAfectante(8, objetivoService.getObjetivo(19));
-		
+
 		//Relaciono los objetivos-objetivos
 		//Los objetivos 10 y 12 no tienen dependencias
 		objetivoService.addObjetivoAfectante(13,14);
@@ -229,7 +229,7 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addObjetivoAfectante(15,17);
 		objetivoService.addObjetivoAfectante(16,18);
 		objetivoService.addObjetivoAfectante(17,19);
-		
+
 		//Relaciono los indicadores-objetivos (3 cada uno)
 		objetivoService.addIndicadorAfectante(13, 1, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(13, 2, nroRandomUNO());
@@ -252,22 +252,22 @@ public class BscApplication implements CommandLineRunner{
 		objetivoService.addIndicadorAfectante(19, 19, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(19, 20, nroRandomUNO());
 		objetivoService.addIndicadorAfectante(19, 21, nroRandomUNO());
-		
+
 		//////////////////////////////////////////////////////////////////////////
 		//Tercer estrategia para realizar otras pruebas:
 		////////////////////////////////////////////////////////////////////////
-				
+
 		//Creo estrategia
 				String descripcion3="Facilitar la vida de las personas a través de la mejor experiencia digital en servicios financieros.";
 				//String vision3="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
 				estrategiaService.addEstrategia(new Estrategia("Tesis Application", descripcion3));
-				
+
 				//Creo perspectivas
-				perspectivaService.addPerspectiva(new Perspectiva("Financiera", "Descripcion financiera..."));		
+				perspectivaService.addPerspectiva(new Perspectiva("Financiera", "Descripcion financiera..."));
 				perspectivaService.addPerspectiva(new Perspectiva("Clientes", "Descripcion clientes..."));
 				perspectivaService.addPerspectiva(new Perspectiva("Procesos internos", "Descripcion procesos internos..."));
 				perspectivaService.addPerspectiva(new Perspectiva("Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento..."));
-				
+
 				//Creo objetivos
 				objetivoService.addObjetivo(new Objetivo("Utilidades","Descripcion utilidades..."));
 				objetivoService.addObjetivo(new Objetivo("Ingresos","Descripcion ingresos..."));
@@ -280,8 +280,8 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addObjetivo(new Objetivo("Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
 				objetivoService.addObjetivo(new Objetivo("Crecimiento profesional","Descripcion crecimiento profesional..."));
 				objetivoService.addObjetivo(new Objetivo("Traspaso funciones internas","Descripcion traspaso funciones internas..."));
-				objetivoService.addObjetivo(new Objetivo("Bienestar","Descripcion bienestar..."));		
-				
+				objetivoService.addObjetivo(new Objetivo("Bienestar","Descripcion bienestar..."));
+
 				//Creo indicadores
 				indicadorService.addIndicador(new Indicador("1 i1-A", nroRandomDIEZ()));
 				indicadorService.addIndicador(new Indicador("2 i1-B", nroRandomDIEZ()));
@@ -307,13 +307,13 @@ public class BscApplication implements CommandLineRunner{
 				indicadorService.addIndicador(new Indicador("22 i11-B", nroRandomDIEZ()));
 				indicadorService.addIndicador(new Indicador("23 i12-A", nroRandomDIEZ()));
 				indicadorService.addIndicador(new Indicador("24 i12-B", nroRandomDIEZ()));
-				
+
 				//Relaciono las perspectivas-estrategias
 				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(9));
 				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(10));
 				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(11));
 				estrategiaService.addPerspectivaAfectante(3, perspectivaService.getPerspectiva(12));
-				
+
 				//Relaciono los objetivos-perspectivas
 				perspectivaService.addObjetivoAfectante(9, objetivoService.getObjetivo(20));
 				perspectivaService.addObjetivoAfectante(9, objetivoService.getObjetivo(21));
@@ -327,8 +327,8 @@ public class BscApplication implements CommandLineRunner{
 				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(29));
 				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(30));
 				perspectivaService.addObjetivoAfectante(12, objetivoService.getObjetivo(31));
-				
-				
+
+
 				//Relaciono los objetivos-objetivos
 				//Los objetivos 10 y 12 no tienen dependencias
 				objetivoService.addObjetivoAfectante(20,23);
@@ -344,8 +344,8 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addObjetivoAfectante(27,29);
 				objetivoService.addObjetivoAfectante(28,31);
 				objetivoService.addObjetivoAfectante(30,31);
-				
-				
+
+
 //				//Relaciono los indicadores-objetivos
 				objetivoService.addIndicadorAfectante(20, 1, nroRandomUNO());
 				objetivoService.addIndicadorAfectante(20, 2, nroRandomUNO());
@@ -371,14 +371,14 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addIndicadorAfectante(30, 22, nroRandomUNO());
 				objetivoService.addIndicadorAfectante(31, 23, nroRandomUNO());
 				objetivoService.addIndicadorAfectante(31, 24, nroRandomUNO());
-				
+
 	}
-	
+
 	public static Float nroRandomDIEZ() {
 		return new Random().nextFloat()*10;
 	}
-	
-	
+
+
 	public static Float nroRandomUNO() {
 		int min = 1;
 		int max = 5;
