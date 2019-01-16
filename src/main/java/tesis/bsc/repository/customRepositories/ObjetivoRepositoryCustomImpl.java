@@ -1,8 +1,10 @@
 package tesis.bsc.repository.customRepositories;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -94,9 +96,8 @@ public class ObjetivoRepositoryCustomImpl implements ObjetivoRepositoryCustom {
 	    	HashSet<ObjetivoHistory> objetivosHistoricos = new HashSet<>();
 	    	results.forEach((obj) -> {
 	    		Float valor = (Float) obj[CERO];
-	    		Timestamp time = new Timestamp((long)obj[UNO]);
-	    		LocalDate localDate = time.toLocalDateTime().toLocalDate();
-	    		objetivosHistoricos.add(new ObjetivoHistory(valor, localDate));
+	    		String fecha = formatDate((long)obj[UNO]);
+	    		objetivosHistoricos.add(new ObjetivoHistory(valor, fecha));
 	    	});
 	    	
 	    	return objetivosHistoricos;    	
@@ -109,5 +110,12 @@ public class ObjetivoRepositoryCustomImpl implements ObjetivoRepositoryCustom {
 			*/
 	    	
 		    }
-	    
+		
+			private String formatDate(long timestamp) {
+			    Calendar c = Calendar.getInstance();
+			    c.setTimeInMillis(timestamp);
+			    Date d = c.getTime();
+			    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			    return sdf.format(d).toString();
+			}
 }

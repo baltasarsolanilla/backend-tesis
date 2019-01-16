@@ -1,17 +1,22 @@
 package tesis.bsc.responseBodyObject;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 import lombok.Data;
 
 public @Data class ObjetivoHistory {
 	private Float valor;
-	private LocalDate fecha;
+	private String fecha;
 	
-	public ObjetivoHistory(Float valor, LocalDate localDate) {
+	
+//	public ObjetivoHistory(Float valor, LocalDate localDate) {
+//		this.valor = valor;
+//		this.fecha = localDate;
+//	}
+	
+	public ObjetivoHistory(Float valor, String fecha) {
 		this.valor = valor;
-		this.fecha = localDate;
+		this.fecha = fecha;
 	}
 	
 	@Override
