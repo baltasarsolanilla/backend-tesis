@@ -98,14 +98,14 @@ public class BscApplication implements CommandLineRunner{
 		//Creo indicadores
 		indicadorService.addIndicador(new Indicador("1 i1-A", 1.0f));
 		indicadorService.addIndicador(new Indicador("2 i1-B", 2.0f));
-		indicadorService.addIndicador(new Indicador("3 i2-A", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("4 i2-B", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("5 i3-A", 8.5f));
-		indicadorService.addIndicador(new Indicador("6 i3-B", 9.2f));
-		indicadorService.addIndicador(new Indicador("7 i4-A", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("8 i4-B", nroRandomDIEZ()));
-		indicadorService.addIndicador(new Indicador("9 i5-A", 5.0f));
-		indicadorService.addIndicador(new Indicador("10 i5-B", 5.1f));
+		indicadorService.addIndicador(new Indicador("3 i2-A", 3.0f));
+		indicadorService.addIndicador(new Indicador("4 i2-B", 4.0f));
+		indicadorService.addIndicador(new Indicador("5 i3-A", 5.0f));
+		indicadorService.addIndicador(new Indicador("6 i3-B", 6.0f));
+		indicadorService.addIndicador(new Indicador("7 i4-A", 7.0f));
+		indicadorService.addIndicador(new Indicador("8 i4-B", 8.0f));
+		indicadorService.addIndicador(new Indicador("9 i5-A", 9.0f));
+		indicadorService.addIndicador(new Indicador("10 i5-B", 10.0f));
 		indicadorService.addIndicador(new Indicador("11 i6-A", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("12 i6-B", nroRandomDIEZ()));
 		indicadorService.addIndicador(new Indicador("13 i7-A", nroRandomDIEZ()));
