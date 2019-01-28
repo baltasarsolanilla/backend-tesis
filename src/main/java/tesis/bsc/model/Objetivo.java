@@ -150,7 +150,7 @@ public @Data class Objetivo implements Serializable{
         
     private Enum<Tendencia> actualizarTendencia(float viejo_valor, float nuevo_valor) {
     	if (nuevo_valor - viejo_valor > 1) return Tendencia.ALTA;
-    	if (nuevo_valor - viejo_valor < 1) return Tendencia.BAJA;
+    	if (nuevo_valor - viejo_valor < -1) return Tendencia.BAJA;
     	return Tendencia.MEDIA;
 	}
 
