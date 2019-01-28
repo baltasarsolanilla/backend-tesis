@@ -56,8 +56,8 @@ public @Data class Objetivo implements Serializable{
 		this.objetivosAfectantes = new ArrayList<>();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.valor = CERO;
-		this.tendencia = Tendencia.MEDIA;
+//		this.valor = CERO;
+//		this.tendencia = Tendencia.MEDIA;
 	}
     
 	public Objetivo cloneObjetivo() {
@@ -128,11 +128,13 @@ public @Data class Objetivo implements Serializable{
      */
     
     public void actualizar() {
-    	if (indicadoresAfectantes != null) {
-        	System.out.println("Actualizar valor de objetivo: " + this.valor);
-        	float viejo_valor = this.valor;
-        	float nuevo_valor = 0.0f;
-        	float peso_acumulado = 0.0f; //Es float por razones de conversiones, pero es un valor entero.
+    	if (indicadoresAfectantes.size() > 0) {
+    		float viejo_valor = CERO;
+    		if (this.valor != null) {
+    			viejo_valor= this.valor;
+    		}
+        	float nuevo_valor = CERO;
+        	float peso_acumulado = CERO; //Es float por razones de conversiones, pero es un valor entero.
     		for (IndicadorXObjetivo ixo : indicadoresAfectantes) {
     			peso_acumulado += ixo.getPeso();
     		}
