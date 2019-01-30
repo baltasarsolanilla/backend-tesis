@@ -371,6 +371,24 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addIndicadorAfectante(30, 22, nroRandomUNO());
 				objetivoService.addIndicadorAfectante(31, 23, nroRandomUNO());
 				objetivoService.addIndicadorAfectante(31, 24, nroRandomUNO());
+				
+				
+				indicadorService.addIndicador(new Indicador("% presentación a exámenes", 6.91f));
+				indicadorService.addIndicador(new Indicador("% aprobados por año", 4.7f));
+				indicadorService.addIndicador(new Indicador("promedio de notas por año", 6.58f));
+				indicadorService.addIndicador(new Indicador("promedio de notas por alumno", 6.65f));
+				indicadorService.addIndicador(new Indicador("# ingresantes por año", 8.2f));
+				indicadorService.addIndicador(new Indicador("% desercion por año", 3.4f));
+				indicadorService.addIndicador(new Indicador("# alumnos con tutores", 4.3f));
+				indicadorService.addIndicador(new Indicador("% asistencia a cursadas", 5.8f));
+				indicadorService.addIndicador(new Indicador("# temas dictados por cátedra", 6.0f));
+				indicadorService.addIndicador(new Indicador("resultados de las encuestas", 4.8f));
+				indicadorService.addIndicador(new Indicador("# actividades por año", 2.2f));
+				indicadorService.addIndicador(new Indicador("# participación", 4.9f));
+				indicadorService.addIndicador(new Indicador("resultados de encuestas de los participantes", 7.9f));
+				indicadorService.addIndicador(new Indicador("# alumnos interesados en talleres", 4.14f));
+				indicadorService.addIndicador(new Indicador("# talleres por año", 1.6f));
+				indicadorService.addIndicador(new Indicador("# tutores", 7.32f));
 
 	}
 
