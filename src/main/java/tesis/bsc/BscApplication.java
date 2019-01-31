@@ -375,12 +375,12 @@ public class BscApplication implements CommandLineRunner{
 				
 				indicadorService.addIndicador(new Indicador("% presentación a exámenes", 6.91f));
 				indicadorService.addIndicador(new Indicador("% aprobados por año", 4.7f));
-				indicadorService.addIndicador(new Indicador("promedio de notas por año", 6.58f));
+				indicadorService.addIndicador(new Indicador("promedio de notas por año", 9.58f));
 				indicadorService.addIndicador(new Indicador("promedio de notas por alumno", 6.65f));
 				indicadorService.addIndicador(new Indicador("# ingresantes por año", 8.2f));
 				indicadorService.addIndicador(new Indicador("% deserción por año", 3.4f));
-				indicadorService.addIndicador(new Indicador("# alumnos con tutores", 4.3f));
-				indicadorService.addIndicador(new Indicador("# tutores", 7.32f));
+				indicadorService.addIndicador(new Indicador("# alumnos con tutores", 3.3f));
+				indicadorService.addIndicador(new Indicador("# tutores", 9.32f));
 				indicadorService.addIndicador(new Indicador("% asistencia a cursadas", 5.8f));
 				indicadorService.addIndicador(new Indicador("# temas dictados por cátedra", 6.0f));
 				indicadorService.addIndicador(new Indicador("resultados de las encuestas", 4.8f));
@@ -435,12 +435,12 @@ public class BscApplication implements CommandLineRunner{
 //				//Relaciono los indicadores-objetivos
 				objetivoService.addIndicadorAfectante(1, 1, 3.0f);
 				objetivoService.addIndicadorAfectante(1, 2, 4.0f);
-				objetivoService.addIndicadorAfectante(2, 3, 2.0f);
-				objetivoService.addIndicadorAfectante(2, 4, 5.0f);
+				objetivoService.addIndicadorAfectante(2, 3, 5.0f);
+				objetivoService.addIndicadorAfectante(2, 4, 2.0f);
 				objetivoService.addIndicadorAfectante(3, 5, 4.0f);
 				objetivoService.addIndicadorAfectante(3, 6, 5.0f);
-				objetivoService.addIndicadorAfectante(4, 7, 3.0f);
-				objetivoService.addIndicadorAfectante(4, 8, 4.0f);
+				objetivoService.addIndicadorAfectante(4, 7, 1.0f);
+				objetivoService.addIndicadorAfectante(4, 8, 5.0f);
 				objetivoService.addIndicadorAfectante(5, 9, 4.0f);
 				objetivoService.addIndicadorAfectante(5, 2, 2.0f);
 				objetivoService.addIndicadorAfectante(5, 10, 3.0f);
@@ -448,8 +448,8 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addIndicadorAfectante(6, 12, 3.0f);
 				objetivoService.addIndicadorAfectante(6, 13, 5.0f);
 				objetivoService.addIndicadorAfectante(6, 14, 3.0f);
-				objetivoService.addIndicadorAfectante(7, 15, 5.0f);
-				objetivoService.addIndicadorAfectante(7, 16, 3.0f);
+				objetivoService.addIndicadorAfectante(7, 15, 2.0f);
+				objetivoService.addIndicadorAfectante(7, 16, 5.0f);
 
 	}
 
