@@ -378,29 +378,26 @@ public class BscApplication implements CommandLineRunner{
 				indicadorService.addIndicador(new Indicador("promedio de notas por año", 6.58f));
 				indicadorService.addIndicador(new Indicador("promedio de notas por alumno", 6.65f));
 				indicadorService.addIndicador(new Indicador("# ingresantes por año", 8.2f));
-				indicadorService.addIndicador(new Indicador("% desercion por año", 3.4f));
+				indicadorService.addIndicador(new Indicador("% deserción por año", 3.4f));
 				indicadorService.addIndicador(new Indicador("# alumnos con tutores", 4.3f));
+				indicadorService.addIndicador(new Indicador("# tutores", 7.32f));
 				indicadorService.addIndicador(new Indicador("% asistencia a cursadas", 5.8f));
 				indicadorService.addIndicador(new Indicador("# temas dictados por cátedra", 6.0f));
 				indicadorService.addIndicador(new Indicador("resultados de las encuestas", 4.8f));
 				indicadorService.addIndicador(new Indicador("# actividades por año", 2.2f));
-				indicadorService.addIndicador(new Indicador("# participación", 4.9f));
-				indicadorService.addIndicador(new Indicador("resultados de encuestas de los participantes", 7.9f));
+				indicadorService.addIndicador(new Indicador("# participantes", 4.9f));
+				indicadorService.addIndicador(new Indicador("resultados de encuestas de participantes", 7.9f));
 				indicadorService.addIndicador(new Indicador("# alumnos interesados en talleres", 4.14f));
 				indicadorService.addIndicador(new Indicador("# talleres por año", 1.6f));
-				indicadorService.addIndicador(new Indicador("# tutores", 7.32f));
 
 				//Creo estrategia
 				String descripcion="Disminuir la deserción temprana de los alumnos de la carrera Ingeniería de Sistemas de UNICEN.";
-				//String vision="Ser la compañía líder en soluciones de tecnología para la banca digital en el mercado global.";
 				estrategiaService.addEstrategia(new Estrategia("Caso de estudio", descripcion));
-		//
+				
+		
 //				//Creo perspectivas
-				perspectivaService.addPerspectiva(new Perspectiva("1 Financiera", "Descripcion financiera..."));
-//				perspectivaService.addPerspectiva(new Perspectiva("2 Clientes", "Descripcion clientes..."));
-//				perspectivaService.addPerspectiva(new Perspectiva("3 Procesos internos", "Descripcion procesos internos..."));
-//				perspectivaService.addPerspectiva(new Perspectiva("4 Aprendizaje y crecimiento", "Descripcion aprendizaje y crecimiento..."));
-		//
+				perspectivaService.addPerspectiva(new Perspectiva("General", "Esta perspectiva tiene un propósito general de agrupamiento."));
+		
 				//Creo objetivos
 				objetivoService.addObjetivo(new Objetivo("Disminuir la deserción temprana","Reducir la cantidad de alumnos que abandonan la carrera Ingeniería de Sistemas en primer y segundo año."));
 				objetivoService.addObjetivo(new Objetivo("Mejorar el rendimiento académico","Incrementar el promedio académico de los alumnos de Ingeniería de Sistemas."));
@@ -409,59 +406,22 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addObjetivo(new Objetivo("Mejorar la “calidad” de las cátedras","Acrecentar el nivel de enseñanza de las clases. "));
 				objetivoService.addObjetivo(new Objetivo("Desarrollar actividades de integración y sociabilización","Implementar actividades para expandir las fronteras de los alumnos."));
 				objetivoService.addObjetivo(new Objetivo("Desarrollar talleres de relaciones institucionales","Implementar oportunidades de intercambio estudiantiles entre las diferentes instituciones de la universidad."));
-//				objetivoService.addObjetivo(new Objetivo("8 Documentar nuevos desarrollow","Descripcion documentar nuevos desarrollow..."));
-//				objetivoService.addObjetivo(new Objetivo("9 Investigar nuevas tecnologias","Descripcion investigar nuevas tecnologias..."));
-//				objetivoService.addObjetivo(new Objetivo("10 Crecimiento profesional","Descripcion crecimiento profesional..."));
-//				objetivoService.addObjetivo(new Objetivo("11 Traspaso funciones internas","Descripcion traspaso funciones internas..."));
-//				objetivoService.addObjetivo(new Objetivo("12 Bienestar","Descripcion bienestar..."));
-		//
-//				//Creo indicadores
-//				indicadorService.addIndicador(new Indicador("1 i1-A", 1.0f));
-//				indicadorService.addIndicador(new Indicador("2 i1-B", 2.0f));
-//				indicadorService.addIndicador(new Indicador("3 i2-A", 3.0f));
-//				indicadorService.addIndicador(new Indicador("4 i2-B", 4.0f));
-//				indicadorService.addIndicador(new Indicador("5 i3-A", 5.0f));
-//				indicadorService.addIndicador(new Indicador("6 i3-B", 6.0f));
-//				indicadorService.addIndicador(new Indicador("7 i4-A", 7.0f));
-//				indicadorService.addIndicador(new Indicador("8 i4-B", 8.0f));
-//				indicadorService.addIndicador(new Indicador("9 i5-A", 9.0f));
-//				indicadorService.addIndicador(new Indicador("10 i5-B", 10.0f));
-//				indicadorService.addIndicador(new Indicador("11 i6-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("12 i6-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("13 i7-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("14 i7-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("15 i8-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("16 i8-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("17 i9-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("18 i9-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("19 i10-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("20 i10-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("21 i11-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("22 i11-B", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("23 i12-A", nroRandomDIEZ()));
-//				indicadorService.addIndicador(new Indicador("24 i12-B", nroRandomDIEZ()));
-		//
+//			
+		
 //				//Relaciono las perspectivas-estrategias
 				estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(1));
-//				estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(2));
-//				estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(3));
-//				estrategiaService.addPerspectivaAfectante(1, perspectivaService.getPerspectiva(4));
-		//
+				
+		
 //				//Relaciono los objetivos-perspectivas
 				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(1));
 				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(2));
 				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(3));
-				perspectivaService.addObjetivoAfectante(2, objetivoService.getObjetivo(4));
-				perspectivaService.addObjetivoAfectante(2, objetivoService.getObjetivo(5));
-				perspectivaService.addObjetivoAfectante(2, objetivoService.getObjetivo(6));
-				perspectivaService.addObjetivoAfectante(3, objetivoService.getObjetivo(7));
-//				perspectivaService.addObjetivoAfectante(3, objetivoService.getObjetivo(8));
-//				perspectivaService.addObjetivoAfectante(3, objetivoService.getObjetivo(9));
-//				perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(10));
-//				perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(11));
-//				perspectivaService.addObjetivoAfectante(4, objetivoService.getObjetivo(12));
-		//
-		//
+				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(4));
+				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(5));
+				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(6));
+				perspectivaService.addObjetivoAfectante(1, objetivoService.getObjetivo(7));
+
+		
 //				//Relaciono los objetivos-objetivos
 //				//Los objetivos 10 y 12 no tienen dependencias
 				objetivoService.addObjetivoAfectante(1,2);
@@ -470,39 +430,26 @@ public class BscApplication implements CommandLineRunner{
 				objetivoService.addObjetivoAfectante(2,5);
 				objetivoService.addObjetivoAfectante(3,6);
 				objetivoService.addObjetivoAfectante(3,7);
-//				objetivoService.addObjetivoAfectante(6,9);
-//				objetivoService.addObjetivoAfectante(7,11);
-//				objetivoService.addObjetivoAfectante(8,11);
-//				objetivoService.addObjetivoAfectante(9,12);
-//				objetivoService.addObjetivoAfectante(11,12);
-		//
-		//
+
+		
 //				//Relaciono los indicadores-objetivos
-//				objetivoService.addIndicadorAfectante(1, 1, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(1, 2, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(2, 3, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(2, 4, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(3, 5, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(3, 6, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(4, 7, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(4, 8, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(5, 9, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(5, 10, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(6, 11, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(6, 12, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(7, 13, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(7, 14, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(8, 15, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(8, 16, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(9, 17, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(9, 18, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(10, 19, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(10, 20, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(11, 21, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(11, 22, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(12, 23, nroRandomUNO());
-//				objetivoService.addIndicadorAfectante(12, 24, nroRandomUNO());
-		//
+				objetivoService.addIndicadorAfectante(1, 1, 3.0f);
+				objetivoService.addIndicadorAfectante(1, 2, 4.0f);
+				objetivoService.addIndicadorAfectante(2, 3, 2.0f);
+				objetivoService.addIndicadorAfectante(2, 4, 5.0f);
+				objetivoService.addIndicadorAfectante(3, 5, 4.0f);
+				objetivoService.addIndicadorAfectante(3, 6, 5.0f);
+				objetivoService.addIndicadorAfectante(4, 7, 3.0f);
+				objetivoService.addIndicadorAfectante(4, 8, 4.0f);
+				objetivoService.addIndicadorAfectante(5, 9, 4.0f);
+				objetivoService.addIndicadorAfectante(5, 2, 2.0f);
+				objetivoService.addIndicadorAfectante(5, 10, 3.0f);
+				objetivoService.addIndicadorAfectante(5, 11, 4.0f);
+				objetivoService.addIndicadorAfectante(6, 12, 3.0f);
+				objetivoService.addIndicadorAfectante(6, 13, 5.0f);
+				objetivoService.addIndicadorAfectante(6, 14, 3.0f);
+				objetivoService.addIndicadorAfectante(7, 15, 5.0f);
+				objetivoService.addIndicadorAfectante(7, 16, 3.0f);
 
 	}
 
