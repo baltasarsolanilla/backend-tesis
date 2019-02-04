@@ -7,17 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Indicador;
-import tesis.bsc.model.Objetivo;
-import tesis.bsc.model.Perspectiva;
 import tesis.bsc.service.EstrategiaService;
 import tesis.bsc.service.ObjetivoService;
 import tesis.bsc.service.PerspectivaService;
