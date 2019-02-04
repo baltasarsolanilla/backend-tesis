@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,6 @@ import tesis.bsc.requestBodyObject.IndicadorPeso;
 import tesis.bsc.responseBodyObject.ObjetivoHistory;
 import tesis.bsc.service.ObjetivoService;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("objetivos")
 public class ObjetivoRestController {

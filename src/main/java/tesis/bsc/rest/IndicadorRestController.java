@@ -3,7 +3,6 @@ package tesis.bsc.rest;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import tesis.bsc.model.Indicador;
 import tesis.bsc.repository.IndicadorRepository;
 import tesis.bsc.service.IndicadorService;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("indicadores")
 public class IndicadorRestController {
