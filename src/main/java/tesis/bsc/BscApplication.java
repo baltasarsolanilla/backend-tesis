@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import tesis.bsc.model.Estrategia;
 import tesis.bsc.model.Indicador;
@@ -474,5 +478,15 @@ public class BscApplication implements CommandLineRunner{
 			return 5.0f;
 		return 100.0f;
 //		return new Random().nextFloat(); no se como sacarle los ultimos dos digitos.
+	}
+	
+	@Configuration
+	@EnableWebMvc
+	public class WebConfig implements WebMvcConfigurer {
+	 
+	    @Override
+	    public void addCorsMappings(CorsRegistry registry) {
+	        registry.addMapping("/**");
+	    }
 	}
 }
