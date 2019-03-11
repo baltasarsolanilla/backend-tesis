@@ -227,7 +227,7 @@ angular.
 angular.
     module('perspectivasTable').
         component('modalComponentPerspectiva', {
-          templateUrl: '../angular/shared-components/modal-form/modal-form-perspectiva.modal.html',
+          templateUrl: 'js/angular/shared-components/modal-form/modal-form-perspectiva.modal.html',
           bindings: {
             // resolve: '<',
             close: '&',

@@ -162,7 +162,7 @@ angular.
 angular.
     module('objetivosPage').
         component('modalModificarObjetivo', {
-            templateUrl: '../angular/objetivos-page/objetivos-page-modals/modificar-objetivo.modal.html',
+            templateUrl: 'js/angular/objetivos-page/objetivos-page-modals/modificar-objetivo.modal.html',
             bindings: {
               resolve: '<',
               close: '&',

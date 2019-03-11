@@ -129,7 +129,7 @@ angular.
 angular.
     module('estrategiasPage').
         component('modalCrearEstrategia', {
-            templateUrl: '../angular/estrategias-page/estrategias-page-modals/crear-estrategia.modal.html',
+            templateUrl: 'js/angular/estrategias-page/estrategias-page-modals/crear-estrategia.modal.html',
             bindings: {
               // resolve: '<',
               close: '&',
@@ -165,7 +165,7 @@ angular.
 angular.
     module('estrategiasPage').
         component('modalModificarEstrategia', {
-            templateUrl: '../angular/estrategias-page/estrategias-page-modals/modificar-estrategia.modal.html',
+            templateUrl: 'js/angular/estrategias-page/estrategias-page-modals/modificar-estrategia.modal.html',
             bindings: {
               resolve: '<',
               close: '&',

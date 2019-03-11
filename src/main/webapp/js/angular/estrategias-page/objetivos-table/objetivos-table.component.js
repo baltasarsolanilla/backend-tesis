@@ -174,7 +174,7 @@ angular.
 angular.
     module('objetivosTable').
         component('modalComponentObjetivo', {
-          templateUrl: '../angular/shared-components/modal-form/modal-form-objetivo.modal.html',
+          templateUrl: 'js/angular/shared-components/modal-form/modal-form-objetivo.modal.html',
           bindings: {
             // resolve: '<',
             close: '&',
