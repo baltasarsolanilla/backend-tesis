@@ -1,0 +1,33 @@
+<div id="page-wrapper2">
+    <h1>Plan Estratégico</h1>
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-lg-6">
+            <div class="btn-group">
+                <button class="btn btn-success btn-lg" ng-click="createEstrategia()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button> 
+                <button class="btn btn-primary btn-lg" ng-click="updateEstrategia()" ng-disabled="!selectedEstrategia">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-danger btn-lg" ng-click="deleteEstrategia()" ng-disabled="!selectedEstrategia">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Nombre</h4>
+            <p>{{selectedEstrategia.nombre}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Descripcion</h4>
+            <p>{{selectedEstrategia.descripcion}}</p>
+        </div>
+    </div>
+    <div class="">
+        <perspectivas-table data="selectedEstrategia.perspectivasAfectantes" add-perspectivas="addPerspectivasAfectantes(perspectivas)" delete-perspectivas="deletePerspectivasAfectantes(perspectivas)"></perspectivas-table>
+    </div>
+</div>
