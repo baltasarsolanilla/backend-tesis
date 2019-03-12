@@ -42,7 +42,6 @@
     "font-awesome-5": "^5.7.2"
   },
   "resolutions": {
-    "font-awesome": "~4.6.3",
     "angular": "^1.7.4"
   },
   "devDependencies": {
